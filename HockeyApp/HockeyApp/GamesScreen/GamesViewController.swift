@@ -21,6 +21,7 @@ class GamesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .black
         self.navigationController?.navigationBar.backgroundColor = .systemBlue
 //        setupSearchbar()
 //        setupSearchButton()

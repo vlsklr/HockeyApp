@@ -9,14 +9,13 @@
 /* Begin PBXBuildFile section */
 		10EB1F1E161CC229E11E37C0 /* libPods-HockeyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D27BC8E08430B65A5946F0F /* libPods-HockeyApp.a */; };
 		F57453A527491A460034C393 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57453A427491A460034C393 /* AppDelegate.swift */; };
-		F57453A727491A460034C393 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57453A627491A460034C393 /* SceneDelegate.swift */; };
 		F57453A927491A460034C393 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57453A827491A460034C393 /* ViewController.swift */; };
-		F57453AC27491A460034C393 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F57453AA27491A460034C393 /* Main.storyboard */; };
 		F57453AF27491A460034C393 /* HockeyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F57453AD27491A460034C393 /* HockeyApp.xcdatamodeld */; };
 		F57453B127491A4A0034C393 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F57453B027491A4A0034C393 /* Assets.xcassets */; };
 		F57453B427491A4A0034C393 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F57453B227491A4A0034C393 /* LaunchScreen.storyboard */; };
 		F57453C427492AD40034C393 /* TablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57453C327492AD40034C393 /* TablesViewController.swift */; };
 		F57453C827492AF20034C393 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57453C727492AF20034C393 /* GamesViewController.swift */; };
+		F57453D72749380C0034C393 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57453D62749380C0034C393 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,15 +24,14 @@
 		F518DD2D0851C812D49D3FE6 /* Pods-HockeyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HockeyApp.release.xcconfig"; path = "Target Support Files/Pods-HockeyApp/Pods-HockeyApp.release.xcconfig"; sourceTree = "<group>"; };
 		F57453A127491A460034C393 /* HockeyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HockeyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57453A427491A460034C393 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F57453A627491A460034C393 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F57453A827491A460034C393 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F57453AB27491A460034C393 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F57453AE27491A460034C393 /* HockeyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HockeyApp.xcdatamodel; sourceTree = "<group>"; };
 		F57453B027491A4A0034C393 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F57453B327491A4A0034C393 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F57453B527491A4A0034C393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F57453C327492AD40034C393 /* TablesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablesViewController.swift; sourceTree = "<group>"; };
 		F57453C727492AF20034C393 /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
+		F57453D62749380C0034C393 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +87,8 @@
 				F57453C227492A970034C393 /* TablesScreen */,
 				F57453C127492A830034C393 /* GamesScreen */,
 				F57453A427491A460034C393 /* AppDelegate.swift */,
-				F57453A627491A460034C393 /* SceneDelegate.swift */,
+				F57453D62749380C0034C393 /* TabBarController.swift */,
 				F57453A827491A460034C393 /* ViewController.swift */,
-				F57453AA27491A460034C393 /* Main.storyboard */,
 				F57453B027491A4A0034C393 /* Assets.xcassets */,
 				F57453B227491A4A0034C393 /* LaunchScreen.storyboard */,
 				F57453B527491A4A0034C393 /* Info.plist */,
@@ -176,7 +173,6 @@
 			files = (
 				F57453B427491A4A0034C393 /* LaunchScreen.storyboard in Resources */,
 				F57453B127491A4A0034C393 /* Assets.xcassets in Resources */,
-				F57453AC27491A460034C393 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,22 +212,14 @@
 				F57453A527491A460034C393 /* AppDelegate.swift in Sources */,
 				F57453AF27491A460034C393 /* HockeyApp.xcdatamodeld in Sources */,
 				F57453C427492AD40034C393 /* TablesViewController.swift in Sources */,
+				F57453D72749380C0034C393 /* TabBarController.swift in Sources */,
 				F57453C827492AF20034C393 /* GamesViewController.swift in Sources */,
-				F57453A727491A460034C393 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F57453AA27491A460034C393 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F57453AB27491A460034C393 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F57453B227491A4A0034C393 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -372,6 +360,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = "-.HockeyApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -392,6 +381,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = "-.HockeyApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
