@@ -1,6 +1,0 @@
-module Pods_HockeyApp {
-  umbrella header "Pods-HockeyApp-umbrella.h"
-
-  export *
-  module * { export * }
-}
