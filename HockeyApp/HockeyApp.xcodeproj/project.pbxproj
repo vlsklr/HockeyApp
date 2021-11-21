@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		10EB1F1E161CC229E11E37C0 /* libPods-HockeyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D27BC8E08430B65A5946F0F /* libPods-HockeyApp.a */; };
+		F53587872749FC0600499806 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53587862749FC0600499806 /* GameCell.swift */; };
 		F57453A527491A460034C393 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57453A427491A460034C393 /* AppDelegate.swift */; };
-		F57453A927491A460034C393 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57453A827491A460034C393 /* ViewController.swift */; };
 		F57453AF27491A460034C393 /* HockeyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F57453AD27491A460034C393 /* HockeyApp.xcdatamodeld */; };
 		F57453B127491A4A0034C393 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F57453B027491A4A0034C393 /* Assets.xcassets */; };
 		F57453B427491A4A0034C393 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F57453B227491A4A0034C393 /* LaunchScreen.storyboard */; };
@@ -22,9 +22,9 @@
 		0D27BC8E08430B65A5946F0F /* libPods-HockeyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HockeyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED57A8835E768C0660C961F /* Pods-HockeyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HockeyApp.debug.xcconfig"; path = "Target Support Files/Pods-HockeyApp/Pods-HockeyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F518DD2D0851C812D49D3FE6 /* Pods-HockeyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HockeyApp.release.xcconfig"; path = "Target Support Files/Pods-HockeyApp/Pods-HockeyApp.release.xcconfig"; sourceTree = "<group>"; };
+		F53587862749FC0600499806 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		F57453A127491A460034C393 /* HockeyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HockeyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57453A427491A460034C393 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F57453A827491A460034C393 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F57453AE27491A460034C393 /* HockeyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HockeyApp.xcdatamodel; sourceTree = "<group>"; };
 		F57453B027491A4A0034C393 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F57453B327491A4A0034C393 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,7 +88,6 @@
 				F57453C127492A830034C393 /* GamesScreen */,
 				F57453A427491A460034C393 /* AppDelegate.swift */,
 				F57453D62749380C0034C393 /* TabBarController.swift */,
-				F57453A827491A460034C393 /* ViewController.swift */,
 				F57453B027491A4A0034C393 /* Assets.xcassets */,
 				F57453B227491A4A0034C393 /* LaunchScreen.storyboard */,
 				F57453B527491A4A0034C393 /* Info.plist */,
@@ -101,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				F57453C727492AF20034C393 /* GamesViewController.swift */,
+				F53587862749FC0600499806 /* GameCell.swift */,
 			);
 			path = GamesScreen;
 			sourceTree = "<group>";
@@ -208,12 +208,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F57453A927491A460034C393 /* ViewController.swift in Sources */,
 				F57453A527491A460034C393 /* AppDelegate.swift in Sources */,
 				F57453AF27491A460034C393 /* HockeyApp.xcdatamodeld in Sources */,
 				F57453C427492AD40034C393 /* TablesViewController.swift in Sources */,
 				F57453D72749380C0034C393 /* TabBarController.swift in Sources */,
 				F57453C827492AF20034C393 /* GamesViewController.swift in Sources */,
+				F53587872749FC0600499806 /* GameCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
