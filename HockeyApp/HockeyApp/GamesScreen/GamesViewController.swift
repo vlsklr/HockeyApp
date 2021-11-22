@@ -96,15 +96,19 @@ extension GamesViewController: UITableViewDelegate {
     }
 }
 extension GamesViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150.00
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return presenter.getFlyghtsCount()
-        return 1
+        return 15
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = GameCell()
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GameCell
-        cell.backgroundColor = .magenta
+        cell.setupCell()
+//        cell.backgroundColor = .magenta
 //        cell.backgroundColor = UIColor.clear
         
 //        if let getter:[FlyghtViewModel] = presenter.getFlyghts() {
