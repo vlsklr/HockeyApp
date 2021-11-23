@@ -31,7 +31,6 @@ class GamesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .black
         self.navigationController?.navigationBar.backgroundColor = .systemBlue
         navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -53,9 +52,10 @@ class GamesViewController: UIViewController {
         tableView.backgroundColor = .white
         tableView.snp.makeConstraints { constraint in
             constraint.top.equalToSuperview().offset(50)
-            constraint.leading.equalToSuperview().offset(16)
-            constraint.trailing.equalToSuperview().offset(-16)
-            constraint.bottom.equalToSuperview().offset(-100)
+            constraint.leading.equalToSuperview()
+            constraint.trailing.equalToSuperview()
+            let tabBarHeight = -1 * (tabBarController?.tabBar.bounds.height ?? 50)
+            constraint.bottom.equalToSuperview().offset(tabBarHeight)
         }
     }
     
@@ -88,12 +88,17 @@ extension GamesViewController: UITableViewDelegate {
 //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath)
+//        cell?.backgroundColor = .green
+   
 //        let cell = tableView.cellForRow(at: indexPath) as! FlyghtViewCell
 //        if let entityID = cell.entityID {
 //            presenter.getFavorite(flyghtID: entityID)
 //
 //        }
     }
+    
+    
 }
 extension GamesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -103,6 +108,8 @@ extension GamesViewController: UITableViewDataSource {
 //        return presenter.getFlyghtsCount()
         return 15
     }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = GameCell()
