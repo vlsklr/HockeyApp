@@ -20,14 +20,14 @@ class TabBarController {
     
     init() {
         self.tabBar = UITabBarController()
-        tabBar.tabBar.barTintColor =  UIColor(red: 0.243, green: 0.776, blue: 1, alpha: 1)
+        tabBar.tabBar.barTintColor =  .red
         
         self.gamesListScreenViewController = GamesViewController()
         self.gamesListNavigationController = UINavigationController(rootViewController: self.gamesListScreenViewController)
-        self.gamesListNavigationController.tabBarItem.title = "123"
+        self.gamesListNavigationController.tabBarItem.title = "Матчи"
         tablesScreenViewController = TablesViewController()
         tablesNavigationController = UINavigationController(rootViewController: tablesScreenViewController)
-        tablesNavigationController.tabBarItem.title = "345"
+        tablesNavigationController.tabBarItem.title = "Таблицы"
         
         self.tabBar.setViewControllers([gamesListNavigationController, tablesNavigationController], animated: true)
     }
