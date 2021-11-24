@@ -16,14 +16,20 @@ class GameCell: UITableViewCell {
     let gameDate = UILabel()
     let scores = UILabel()
     let arena = UILabel()
-    
+    let selectedView = UIView()
+
+
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+//        contentView.backgroundColor = .green
     }
+    
+    
     
     func setupCell() {
         setupArena()
@@ -33,6 +39,9 @@ class GameCell: UITableViewCell {
         setupVisitorTeamLogo()
         setupVisitiorTeamName()
         setupScores()
+        selectedView.backgroundColor = .red
+        selectedBackgroundView = selectedView
+//        contentView.backgroundColor = .white
     }
     
     func setupArena() {
