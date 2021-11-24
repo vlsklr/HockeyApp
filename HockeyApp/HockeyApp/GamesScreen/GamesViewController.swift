@@ -33,7 +33,7 @@ class GamesViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.backgroundColor = .systemBlue
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
+        tableView.backgroundColor = .white
         tableView.refreshControl = refreshControll
         initActivityIndicator()
     }
@@ -88,8 +88,9 @@ extension GamesViewController: UITableViewDelegate {
 //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.cellForRow(at: indexPath)
-//        cell?.backgroundColor = .green
+        let cell = tableView.cellForRow(at: indexPath)
+        //        cell?.selectedBackgroundView?.backgroundColor = .green
+        
    
 //        let cell = tableView.cellForRow(at: indexPath) as! FlyghtViewCell
 //        if let entityID = cell.entityID {
@@ -105,26 +106,16 @@ extension GamesViewController: UITableViewDataSource {
         return 150.00
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return presenter.getFlyghtsCount()
         return 15
     }
     
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = GameCell()
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GameCell
         cell.setupCell()
-//        cell.backgroundColor = .magenta
-//        cell.backgroundColor = UIColor.clear
-        
-//        if let getter:[FlyghtViewModel] = presenter.getFlyghts() {
-//            if indexPath.row < getter.count {
-//                cell.setupCell(id: getter[indexPath.row].flyghtID)
-//                cell.flyghtNumberLabel.text = "\(RootViewController.labels!.favoriteCellFlyghtNumber)  \(getter[indexPath.row].flyghtNumber)"
-//                cell.departireTimeLabel.text = "\(RootViewController.labels!.favoriteCellDepartureDate)  \(getter[indexPath.row].departureDateLocal)"
-//            }
-//        }
+        cell.backgroundColor = .white
+
         return cell
     }
 }
