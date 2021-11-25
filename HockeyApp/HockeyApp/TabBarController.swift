@@ -19,19 +19,21 @@ class TabBarController {
     
     
     init() {
-        self.tabBar = UITabBarController()
-        tabBar.tabBar.barTintColor = .red
+        tabBar = UITabBarController()
+        tabBar.tabBar.barTintColor =  .red
         
-        self.gamesListScreenViewController = GamesViewController()
-        self.gamesListNavigationController = UINavigationController(rootViewController: self.gamesListScreenViewController)
-        self.gamesListNavigationController.tabBarItem.title = "Матчи"
+        gamesListScreenViewController = GamesViewController()
+        gamesListNavigationController = UINavigationController(rootViewController: self.gamesListScreenViewController)
+        gamesListNavigationController.tabBarItem.title = "Матчи"
+        gamesListNavigationController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
         tablesScreenViewController = TablesViewController()
         tablesNavigationController = UINavigationController(rootViewController: tablesScreenViewController)
         tablesNavigationController.tabBarItem.title = "Таблицы"
-        
-        self.tabBar.setViewControllers([gamesListNavigationController, tablesNavigationController], animated: true)
+//        tablesNavigationController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "American Typewriter", size: 25)], for: .normal)
+        tablesNavigationController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        tabBar.setViewControllers([gamesListNavigationController, tablesNavigationController], animated: true)
     }
     func getTabBar() -> UITabBarController {
-        return self.tabBar
+        return tabBar
     }
 }
