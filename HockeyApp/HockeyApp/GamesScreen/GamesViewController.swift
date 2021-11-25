@@ -88,6 +88,7 @@ extension GamesViewController: UITableViewDelegate {
 //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
 //        let cell = tableView.cellForRow(at: indexPath)
 //        cell?.backgroundColor = .green
    
@@ -114,6 +115,7 @@ extension GamesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = GameCell()
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GameCell
+        
         cell.setupCell()
 //        cell.backgroundColor = .magenta
 //        cell.backgroundColor = UIColor.clear

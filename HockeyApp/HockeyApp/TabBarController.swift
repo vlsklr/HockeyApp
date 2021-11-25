@@ -20,7 +20,7 @@ class TabBarController {
     
     init() {
         self.tabBar = UITabBarController()
-        tabBar.tabBar.barTintColor =  .red
+        tabBar.tabBar.barTintColor = .red
         
         self.gamesListScreenViewController = GamesViewController()
         self.gamesListNavigationController = UINavigationController(rootViewController: self.gamesListScreenViewController)
