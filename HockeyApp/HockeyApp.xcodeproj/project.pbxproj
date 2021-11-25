@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		10EB1F1E161CC229E11E37C0 /* libPods-HockeyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D27BC8E08430B65A5946F0F /* libPods-HockeyApp.a */; };
+		84FC5F41274F5A6300CC26FE /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F40274F5A6300CC26FE /* GameModel.swift */; };
+		84FC5F43274F5A7100CC26FE /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F42274F5A7100CC26FE /* PersonModel.swift */; };
+		84FC5F47274F5A8500CC26FE /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F46274F5A8500CC26FE /* TeamModel.swift */; };
+		84FC5F49274F5AD900CC26FE /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F48274F5AD900CC26FE /* PlayerModel.swift */; };
+		84FC5F4D274F5E4200CC26FE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F4C274F5E4200CC26FE /* NetworkManager.swift */; };
 		F53587872749FC0600499806 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53587862749FC0600499806 /* GameCell.swift */; };
 		F57453A527491A460034C393 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57453A427491A460034C393 /* AppDelegate.swift */; };
 		F57453AF27491A460034C393 /* HockeyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F57453AD27491A460034C393 /* HockeyApp.xcdatamodeld */; };
@@ -20,6 +25,11 @@
 
 /* Begin PBXFileReference section */
 		0D27BC8E08430B65A5946F0F /* libPods-HockeyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HockeyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84FC5F40274F5A6300CC26FE /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		84FC5F42274F5A7100CC26FE /* PersonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
+		84FC5F46274F5A8500CC26FE /* TeamModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamModel.swift; path = ../../../../.Trash/TeamModel.swift; sourceTree = "<group>"; };
+		84FC5F48274F5AD900CC26FE /* PlayerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
+		84FC5F4C274F5E4200CC26FE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CED57A8835E768C0660C961F /* Pods-HockeyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HockeyApp.debug.xcconfig"; path = "Target Support Files/Pods-HockeyApp/Pods-HockeyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F518DD2D0851C812D49D3FE6 /* Pods-HockeyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HockeyApp.release.xcconfig"; path = "Target Support Files/Pods-HockeyApp/Pods-HockeyApp.release.xcconfig"; sourceTree = "<group>"; };
 		F53587862749FC0600499806 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
@@ -63,6 +73,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		84FC5F3F274F5A3200CC26FE /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				84FC5F40274F5A6300CC26FE /* GameModel.swift */,
+				84FC5F42274F5A7100CC26FE /* PersonModel.swift */,
+				84FC5F48274F5AD900CC26FE /* PlayerModel.swift */,
+				84FC5F46274F5A8500CC26FE /* TeamModel.swift */,
+			);
+			name = Entities;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		84FC5F4A274F5E1D00CC26FE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				84FC5F4C274F5E4200CC26FE /* NetworkManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		F574539827491A460034C393 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +114,8 @@
 		F57453A327491A460034C393 /* HockeyApp */ = {
 			isa = PBXGroup;
 			children = (
+				84FC5F4A274F5E1D00CC26FE /* Services */,
+				84FC5F3F274F5A3200CC26FE /* Entities */,
 				F57453C227492A970034C393 /* TablesScreen */,
 				F57453C127492A830034C393 /* GamesScreen */,
 				F57453A427491A460034C393 /* AppDelegate.swift */,
@@ -210,9 +242,14 @@
 			files = (
 				F57453A527491A460034C393 /* AppDelegate.swift in Sources */,
 				F57453AF27491A460034C393 /* HockeyApp.xcdatamodeld in Sources */,
+				84FC5F41274F5A6300CC26FE /* GameModel.swift in Sources */,
 				F57453C427492AD40034C393 /* TablesViewController.swift in Sources */,
+				84FC5F4D274F5E4200CC26FE /* NetworkManager.swift in Sources */,
 				F57453D72749380C0034C393 /* TabBarController.swift in Sources */,
 				F57453C827492AF20034C393 /* GamesViewController.swift in Sources */,
+				84FC5F43274F5A7100CC26FE /* PersonModel.swift in Sources */,
+				84FC5F47274F5A8500CC26FE /* TeamModel.swift in Sources */,
+				84FC5F49274F5AD900CC26FE /* PlayerModel.swift in Sources */,
 				F53587872749FC0600499806 /* GameCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
