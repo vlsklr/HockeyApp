@@ -35,16 +35,19 @@ class NetworkManager {
             switch result {
             case .success(let rawData):
                 let document: Document? = try? SwiftSoup.parse(rawData)
-                guard let tmp = try? document?.select("href = \"slide__match-info\"") else {
+                guard let gamesList = try? document?.getElementsByClass("slide__match-info") else {
                     print("something went wrong")
                     return
                 }
-                for element: Element in tmp.array() {
-                    print(element)
+                for game: Element in gamesList.array() {
+                    guard let teams = try? game.getElementsByClass("slide__command") else {return}
+                    let team1 = try? teams.first()?.getElementsByClass("slide__command-name").text()
+                    let team2 = try? teams.last()?.getElementsByClass("slide__command-name").text()
+                    for team: Element in teams {
+                        let teamName1 = try! team.getElementsByClass("slide__command-name")
+                        print(try! teamName1.text())
+                    }
                 }
-
-                //class="slide__match-info
-                print(rawData)
             case .failure(let error):
                 print(error)
             }
