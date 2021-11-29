@@ -36,11 +36,13 @@ class GamesViewController: UIViewController {
         tableView.backgroundColor = .white
         tableView.refreshControl = refreshControll
         initActivityIndicator()
+        let manager = NetworkManager().loadGames(url: "https://sibhl.ru")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         initTableView()
         tableView.reloadData()
+    
     }
     
     func initTableView() {
