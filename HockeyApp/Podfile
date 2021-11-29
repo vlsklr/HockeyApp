@@ -3,4 +3,5 @@
 
 target 'HockeyApp' do
   pod 'SnapKit'
+  pod 'SwiftSoup'
 end
