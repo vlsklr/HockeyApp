@@ -30,7 +30,8 @@ class NetworkManager {
         }).resume()
     }
     
-    func loadGames(url: String) {
+    func loadGames(url: String) -> [GameModel] {
+        var matches: [GameModel] = [GameModel]()
         loadInfo(url: url) { result in
             switch result {
             case .success(let rawData):
@@ -40,17 +41,17 @@ class NetworkManager {
                     return
                 }
                 for game: Element in gamesList.array() {
-                    guard let teams = try? game.getElementsByClass("slide__command") else {return}
-                    let team1 = try? teams.first()?.getElementsByClass("slide__command-name").text()
-                    let team2 = try? teams.last()?.getElementsByClass("slide__command-name").text()
-                    for team: Element in teams {
-                        let teamName1 = try! team.getElementsByClass("slide__command-name")
-                        print(try! teamName1.text())
-                    }
+                    guard let teams = try? game.getElementsByClass("slide__command"), let team1 = try? teams.first()?.getElementsByClass("slide__command-name").text(), let team2 = try? teams.last()?.getElementsByClass("slide__command-name").text()  else {return}
+                    let homeTeam = TeamModel(name: nil, shortName: team1)
+                    let visitorTeam = TeamModel(name: nil, shortName: team2)
+                    let game = GameModel(visitorTeam: visitorTeam, homeTeam: homeTeam, visitorScores: 0, homeScores: 0, gamedate: "1234")
+                    matches.append(game)
+
                 }
             case .failure(let error):
                 print(error)
             }
         }
+        return matches
     }
 }
