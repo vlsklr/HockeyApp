@@ -8,11 +8,14 @@
 import Foundation
 import SwiftSoup
 
+protocol INetworkManager {
+    func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ())
+}
 
 class NetworkManager {
     
-    func loadInfo(url: String, completion: @escaping (Result<String, Error>) -> Void) {
-        guard let url = URL(string: "https://sibhl.ru/") else { return }
+    private func loadInfo(url: String, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let url = URL(string: url) else { return }
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
         request.timeoutInterval = 15
@@ -30,7 +33,7 @@ class NetworkManager {
         }).resume()
     }
     
-    func loadGames(url: String) -> [GameModel] {
+    func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ()) {
         var matches: [GameModel] = [GameModel]()
         loadInfo(url: url) { result in
             switch result {
@@ -48,10 +51,10 @@ class NetworkManager {
                     matches.append(game)
 
                 }
+                completion(matches)
             case .failure(let error):
                 print(error)
             }
         }
-        return matches
     }
 }

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		10EB1F1E161CC229E11E37C0 /* libPods-HockeyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D27BC8E08430B65A5946F0F /* libPods-HockeyApp.a */; };
+		846EFF1B2755F2E20013B27C /* GamesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EFF1A2755F2E20013B27C /* GamesPresenter.swift */; };
+		846EFF1D2755F2F30013B27C /* GamesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EFF1C2755F2F30013B27C /* GamesInteractor.swift */; };
+		846EFF1F2755F3620013B27C /* GamesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EFF1E2755F3620013B27C /* GamesRouter.swift */; };
+		846EFF212755F3710013B27C /* GamesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EFF202755F3710013B27C /* GamesAssembly.swift */; };
 		84FC5F41274F5A6300CC26FE /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F40274F5A6300CC26FE /* GameModel.swift */; };
 		84FC5F43274F5A7100CC26FE /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F42274F5A7100CC26FE /* PersonModel.swift */; };
 		84FC5F47274F5A8500CC26FE /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F46274F5A8500CC26FE /* TeamModel.swift */; };
@@ -25,6 +29,10 @@
 
 /* Begin PBXFileReference section */
 		0D27BC8E08430B65A5946F0F /* libPods-HockeyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HockeyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		846EFF1A2755F2E20013B27C /* GamesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesPresenter.swift; sourceTree = "<group>"; };
+		846EFF1C2755F2F30013B27C /* GamesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesInteractor.swift; sourceTree = "<group>"; };
+		846EFF1E2755F3620013B27C /* GamesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesRouter.swift; sourceTree = "<group>"; };
+		846EFF202755F3710013B27C /* GamesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesAssembly.swift; sourceTree = "<group>"; };
 		84FC5F40274F5A6300CC26FE /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		84FC5F42274F5A7100CC26FE /* PersonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		84FC5F46274F5A8500CC26FE /* TeamModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamModel.swift; path = ../../../../.Trash/TeamModel.swift; sourceTree = "<group>"; };
@@ -132,7 +140,11 @@
 			isa = PBXGroup;
 			children = (
 				F57453C727492AF20034C393 /* GamesViewController.swift */,
+				846EFF1C2755F2F30013B27C /* GamesInteractor.swift */,
 				F53587862749FC0600499806 /* GameCell.swift */,
+				846EFF1A2755F2E20013B27C /* GamesPresenter.swift */,
+				846EFF1E2755F3620013B27C /* GamesRouter.swift */,
+				846EFF202755F3710013B27C /* GamesAssembly.swift */,
 			);
 			path = GamesScreen;
 			sourceTree = "<group>";
@@ -240,8 +252,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846EFF1B2755F2E20013B27C /* GamesPresenter.swift in Sources */,
 				F57453A527491A460034C393 /* AppDelegate.swift in Sources */,
 				F57453AF27491A460034C393 /* HockeyApp.xcdatamodeld in Sources */,
+				846EFF212755F3710013B27C /* GamesAssembly.swift in Sources */,
 				84FC5F41274F5A6300CC26FE /* GameModel.swift in Sources */,
 				F57453C427492AD40034C393 /* TablesViewController.swift in Sources */,
 				84FC5F4D274F5E4200CC26FE /* NetworkManager.swift in Sources */,
@@ -250,6 +264,8 @@
 				84FC5F43274F5A7100CC26FE /* PersonModel.swift in Sources */,
 				84FC5F47274F5A8500CC26FE /* TeamModel.swift in Sources */,
 				84FC5F49274F5AD900CC26FE /* PlayerModel.swift in Sources */,
+				846EFF1D2755F2F30013B27C /* GamesInteractor.swift in Sources */,
+				846EFF1F2755F3620013B27C /* GamesRouter.swift in Sources */,
 				F53587872749FC0600499806 /* GameCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,11 @@
 import UIKit
 import SnapKit
 
-class GamesViewController: UIViewController {
+protocol IGamesViewController: AnyObject {
+    
+}
+
+class GamesViewController: UIViewController, IGamesViewController {
     
     let tableView: UITableView = UITableView()
     private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -18,6 +22,8 @@ class GamesViewController: UIViewController {
 //        refresh.addTarget(self, action: #selector(refreshFlyghts(sender:)), for: .valueChanged)
         return refresh
     }()
+    var games:[GameModel]?
+
     
     
     init() {
@@ -36,7 +42,14 @@ class GamesViewController: UIViewController {
         tableView.backgroundColor = .white
         tableView.refreshControl = refreshControll
         initActivityIndicator()
-        let manager = NetworkManager().loadGames(url: "https://sibhl.ru")
+        let manager = NetworkManager().loadGames(url: "https://sibhl.ru") { [self] result in
+            
+            self.games = result
+            DispatchQueue.main.async {
+                tableView.reloadData()
+
+            }
+        }
         print(manager)
     }
     
@@ -92,6 +105,7 @@ extension GamesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
+        
         //        cell?.selectedBackgroundView?.backgroundColor = .green
         
    
@@ -109,7 +123,7 @@ extension GamesViewController: UITableViewDataSource {
         return 150.00
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        return games?.count ?? 0
     }
     
     
@@ -118,6 +132,10 @@ extension GamesViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GameCell
         cell.setupCell()
         cell.backgroundColor = .white
+        if !(games?.isEmpty ?? true) {
+            cell.homeTeamNameLabel.text = games?[indexPath.row].homeTeam.shortName
+            cell.visitorTeamNameLabel.text = games?[indexPath.row].visitorTeam.shortName
+            }
 
         return cell
     }
