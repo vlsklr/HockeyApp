@@ -12,7 +12,7 @@ protocol INetworkManager {
     func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ())
 }
 
-class NetworkManager {
+class NetworkManager: INetworkManager {
     
     private func loadInfo(url: String, completion: @escaping (Result<String, Error>) -> Void) {
         guard let url = URL(string: url) else { return }

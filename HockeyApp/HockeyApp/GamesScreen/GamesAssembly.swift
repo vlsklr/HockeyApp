@@ -11,6 +11,13 @@ import Foundation
 class GamesAssembly {
     
     func build() -> GamesViewController {
-        return GamesViewController()
+        let router = GamesRouter()
+        let networkManager = NetworkManager()
+        let interactor = GamesInteractor(networkManager: networkManager)
+        let presenter = GamesPresenter(router: router, interactor: interactor)
+        interactor.presenter = presenter
+        let view = GamesViewController(presenter: presenter)
+        presenter.view = view
+        return view
     }
 }
