@@ -9,10 +9,16 @@ import UIKit
 import SnapKit
 
 protocol IGamesViewController: AnyObject {
-    
+    func refreshView()
 }
 
 class GamesViewController: UIViewController, IGamesViewController {
+    func refreshView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     
     let tableView: UITableView = UITableView()
     private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -22,12 +28,13 @@ class GamesViewController: UIViewController, IGamesViewController {
 //        refresh.addTarget(self, action: #selector(refreshFlyghts(sender:)), for: .valueChanged)
         return refresh
     }()
-    var games:[GameModel]?
+//    var games:[GameModel]?
+    let presenter: IGamesPresenter
 
     
     
-    init() {
-//        self.presenter = presenter
+    init(presenter: IGamesPresenter) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,21 +49,11 @@ class GamesViewController: UIViewController, IGamesViewController {
         tableView.backgroundColor = .white
         tableView.refreshControl = refreshControll
         initActivityIndicator()
-        let manager = NetworkManager().loadGames(url: "https://sibhl.ru") { [self] result in
-            
-            self.games = result
-            DispatchQueue.main.async {
-                tableView.reloadData()
-
-            }
-        }
-        print(manager)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         initTableView()
         tableView.reloadData()
-    
     }
     
     func initTableView() {
@@ -84,7 +81,7 @@ class GamesViewController: UIViewController, IGamesViewController {
             make.width.equalTo(250)
             make.height.equalTo(250)
         }
-    }
+    }    
 }
 
 extension GamesViewController: UITableViewDelegate {
@@ -120,10 +117,10 @@ extension GamesViewController: UITableViewDelegate {
 }
 extension GamesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150.00
+        return 175.00
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return games?.count ?? 0
+        return presenter.getMatchesCount()
     }
     
     
@@ -131,12 +128,8 @@ extension GamesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GameCell
         cell.setupCell()
-        cell.backgroundColor = .white
-        if !(games?.isEmpty ?? true) {
-            cell.homeTeamNameLabel.text = games?[indexPath.row].homeTeam.shortName
-            cell.visitorTeamNameLabel.text = games?[indexPath.row].visitorTeam.shortName
-            }
-
+//        cell.backgroundColor = .white
+        presenter.getMatchData(indexPath: indexPath, cell: cell)
         return cell
     }
 }

@@ -22,7 +22,7 @@ class TabBarController {
         tabBar = UITabBarController()
         tabBar.tabBar.barTintColor =  .red
         
-        gamesListScreenViewController = GamesViewController()
+        gamesListScreenViewController = GamesAssembly().build()
         gamesListNavigationController = UINavigationController(rootViewController: self.gamesListScreenViewController)
         gamesListNavigationController.tabBarItem.title = "Матчи"
         gamesListNavigationController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IGamesInteractor: AnyObject {
-    
+    func getMatchesList()
 }
 
 class GamesInteractor: IGamesInteractor {
@@ -17,5 +17,11 @@ class GamesInteractor: IGamesInteractor {
     
     init(networkManager: INetworkManager) {
         self.networkManager = networkManager
+    }
+    
+    func getMatchesList() {
+        networkManager.loadGames(url: "https://sibhl.ru") { games in
+            self.presenter?.setLoadedMatches(matches: games)
+        }
     }
 }

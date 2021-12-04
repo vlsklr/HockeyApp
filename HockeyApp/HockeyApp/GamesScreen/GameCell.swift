@@ -8,6 +8,10 @@
 import SnapKit
 import UIKit
 
+protocol IGameCell {
+    func setInfo(game: GameModel)
+}
+
 class GameCell: UITableViewCell {
     let homeTeamNameLabel = UILabel()
     let visitorTeamNameLabel = UILabel()
@@ -17,16 +21,14 @@ class GameCell: UITableViewCell {
     let scores = UILabel()
     let arena = UILabel()
     let selectedView = UIView()
-
-
+    
+    
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-//        contentView.backgroundColor = .green
     }
     
     
@@ -41,7 +43,7 @@ class GameCell: UITableViewCell {
         setupScores()
         selectedView.backgroundColor = .red
         selectedBackgroundView = selectedView
-//        contentView.backgroundColor = .white
+        backgroundColor = .white
     }
     
     func setupArena() {
@@ -76,13 +78,13 @@ class GameCell: UITableViewCell {
     
     func setupHomeTeamLogo() {
         contentView.addSubview(homeTeamLogo)
-//        homeTeamLogo.backgroundColor = .green
+        //        homeTeamLogo.backgroundColor = .green
         homeTeamLogo.image = UIImage(named: "photo_70")
         homeTeamLogo.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.top.equalToSuperview().offset(25)
-            make.width.equalTo(75)
-            make.height.equalTo(75)
+            make.width.equalTo(100)
+            make.height.equalTo(100)
         }
         
     }
@@ -95,7 +97,6 @@ class GameCell: UITableViewCell {
         homeTeamNameLabel.text = "ЛГН"
         homeTeamNameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
-//            make.trailing.equalToSuperview().offset(-100)
             make.top.equalTo(homeTeamLogo.snp_bottomMargin).offset(15)
             make.width.equalTo(homeTeamLogo)
             make.height.equalTo(25)
@@ -105,13 +106,11 @@ class GameCell: UITableViewCell {
     func setupVisitorTeamLogo() {
         contentView.addSubview(visitorTeamLogo)
         visitorTeamLogo.image = UIImage(named: "photo_70")
-//        visitorTeamLogo.backgroundColor = .red
-        
         visitorTeamLogo.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-20)
             make.top.equalToSuperview().offset(25)
-            make.width.equalTo(75)
-            make.height.equalTo(75)
+            make.width.equalTo(100)
+            make.height.equalTo(100)
         }
     }
     
@@ -121,7 +120,6 @@ class GameCell: UITableViewCell {
         visitorTeamNameLabel.textAlignment = .center
         visitorTeamNameLabel.font = visitorTeamNameLabel.font.withSize(25)
         visitorTeamNameLabel.text = "ЛГН"
-        
         visitorTeamNameLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(visitorTeamLogo.snp_bottomMargin).offset(15)
@@ -144,4 +142,16 @@ class GameCell: UITableViewCell {
             make.width.equalTo(50)
         }
     }
+}
+
+extension GameCell: IGameCell {
+    func setInfo(game: GameModel) {
+        homeTeamNameLabel.text = game.homeTeam.shortName
+        visitorTeamNameLabel.text = game.visitorTeam.shortName
+        gameDate.text = game.gamedate
+        scores.text = "\(game.homeScores) : \(game.visitorScores)"
+        arena.text = game.arena
+    }
+    
+    
 }
