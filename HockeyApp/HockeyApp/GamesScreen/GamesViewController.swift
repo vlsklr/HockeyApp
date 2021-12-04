@@ -117,7 +117,7 @@ extension GamesViewController: UITableViewDelegate {
 }
 extension GamesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150.00
+        return 175.00
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.getMatchesCount()
@@ -128,7 +128,7 @@ extension GamesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GameCell
         cell.setupCell()
-        cell.backgroundColor = .white
+//        cell.backgroundColor = .white
         presenter.getMatchData(indexPath: indexPath, cell: cell)
         return cell
     }

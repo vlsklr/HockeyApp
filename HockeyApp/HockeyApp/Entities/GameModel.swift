@@ -13,4 +13,5 @@ struct GameModel {
     var visitorScores: Int
     var homeScores: Int
     var gamedate: String
+    var arena: String
 }
