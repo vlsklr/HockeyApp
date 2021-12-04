@@ -10,7 +10,6 @@ import SnapKit
 
 protocol IGamesViewController: AnyObject {
     func refreshView()
-    
 }
 
 class GamesViewController: UIViewController, IGamesViewController {
@@ -82,7 +81,7 @@ class GamesViewController: UIViewController, IGamesViewController {
             make.width.equalTo(250)
             make.height.equalTo(250)
         }
-    }
+    }    
 }
 
 extension GamesViewController: UITableViewDelegate {
@@ -130,10 +129,7 @@ extension GamesViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GameCell
         cell.setupCell()
         cell.backgroundColor = .white
-        if let game = presenter.getMatchData(indexPath: indexPath) {
-            cell.homeTeamNameLabel.text = game.homeTeam.shortName
-            cell.visitorTeamNameLabel.text = game.visitorTeam.shortName
-        }
+        presenter.getMatchData(indexPath: indexPath, cell: cell)
         return cell
     }
 }

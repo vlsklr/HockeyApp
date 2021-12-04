@@ -14,10 +14,10 @@
 		846EFF212755F3710013B27C /* GamesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EFF202755F3710013B27C /* GamesAssembly.swift */; };
 		84FC5F41274F5A6300CC26FE /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F40274F5A6300CC26FE /* GameModel.swift */; };
 		84FC5F43274F5A7100CC26FE /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F42274F5A7100CC26FE /* PersonModel.swift */; };
-		84FC5F47274F5A8500CC26FE /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F46274F5A8500CC26FE /* TeamModel.swift */; };
 		84FC5F49274F5AD900CC26FE /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F48274F5AD900CC26FE /* PlayerModel.swift */; };
 		84FC5F4D274F5E4200CC26FE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F4C274F5E4200CC26FE /* NetworkManager.swift */; };
 		F53587872749FC0600499806 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53587862749FC0600499806 /* GameCell.swift */; };
+		F5566B7A275B16E100CC7BA9 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5566B79275B16E100CC7BA9 /* TeamModel.swift */; };
 		F57453A527491A460034C393 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57453A427491A460034C393 /* AppDelegate.swift */; };
 		F57453AF27491A460034C393 /* HockeyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F57453AD27491A460034C393 /* HockeyApp.xcdatamodeld */; };
 		F57453B127491A4A0034C393 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F57453B027491A4A0034C393 /* Assets.xcassets */; };
@@ -35,12 +35,12 @@
 		846EFF202755F3710013B27C /* GamesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesAssembly.swift; sourceTree = "<group>"; };
 		84FC5F40274F5A6300CC26FE /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		84FC5F42274F5A7100CC26FE /* PersonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
-		84FC5F46274F5A8500CC26FE /* TeamModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamModel.swift; path = ../../../../.Trash/TeamModel.swift; sourceTree = "<group>"; };
 		84FC5F48274F5AD900CC26FE /* PlayerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		84FC5F4C274F5E4200CC26FE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CED57A8835E768C0660C961F /* Pods-HockeyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HockeyApp.debug.xcconfig"; path = "Target Support Files/Pods-HockeyApp/Pods-HockeyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F518DD2D0851C812D49D3FE6 /* Pods-HockeyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HockeyApp.release.xcconfig"; path = "Target Support Files/Pods-HockeyApp/Pods-HockeyApp.release.xcconfig"; sourceTree = "<group>"; };
 		F53587862749FC0600499806 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		F5566B79275B16E100CC7BA9 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		F57453A127491A460034C393 /* HockeyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HockeyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57453A427491A460034C393 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F57453AE27491A460034C393 /* HockeyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HockeyApp.xcdatamodel; sourceTree = "<group>"; };
@@ -85,9 +85,9 @@
 			isa = PBXGroup;
 			children = (
 				84FC5F40274F5A6300CC26FE /* GameModel.swift */,
+				F5566B79275B16E100CC7BA9 /* TeamModel.swift */,
 				84FC5F42274F5A7100CC26FE /* PersonModel.swift */,
 				84FC5F48274F5AD900CC26FE /* PlayerModel.swift */,
-				84FC5F46274F5A8500CC26FE /* TeamModel.swift */,
 			);
 			name = Entities;
 			path = ..;
@@ -262,8 +262,8 @@
 				F57453D72749380C0034C393 /* TabBarController.swift in Sources */,
 				F57453C827492AF20034C393 /* GamesViewController.swift in Sources */,
 				84FC5F43274F5A7100CC26FE /* PersonModel.swift in Sources */,
-				84FC5F47274F5A8500CC26FE /* TeamModel.swift in Sources */,
 				84FC5F49274F5AD900CC26FE /* PlayerModel.swift in Sources */,
+				F5566B7A275B16E100CC7BA9 /* TeamModel.swift in Sources */,
 				846EFF1D2755F2F30013B27C /* GamesInteractor.swift in Sources */,
 				846EFF1F2755F3620013B27C /* GamesRouter.swift in Sources */,
 				F53587872749FC0600499806 /* GameCell.swift in Sources */,

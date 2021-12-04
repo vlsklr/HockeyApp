@@ -10,7 +10,7 @@ import Foundation
 protocol IGamesPresenter: AnyObject {
     func setLoadedMatches(matches: [GameModel])
     func getMatchesCount() -> Int
-    func getMatchData(indexPath: IndexPath) -> GameModel?
+    func getMatchData(indexPath: IndexPath, cell: IGameCell)
 }
 
 class GamesPresenter: IGamesPresenter {
@@ -34,8 +34,11 @@ class GamesPresenter: IGamesPresenter {
         view?.refreshView()
     }
     
-    func getMatchData(indexPath: IndexPath) -> GameModel? {
-        return matches?[indexPath.row]
+    func getMatchData(indexPath: IndexPath, cell: IGameCell) {
+        guard let game = matches?[indexPath.row] else {
+            return
+        }
+        cell.setInfo(game: game)        
     }
     
 }
