@@ -10,4 +10,5 @@ import Foundation
 struct TeamModel {
     var name: String?
     var shortName: String
+    var logoLink: String?
 }
