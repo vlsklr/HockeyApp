@@ -33,6 +33,10 @@ class NetworkManager: INetworkManager {
         }).resume()
     }
     
+    func loadImage(link: String) {
+        
+    }
+    
     func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ()) {
         var matches: [GameModel] = [GameModel]()
         loadInfo(url: url) { result in
@@ -44,13 +48,13 @@ class NetworkManager: INetworkManager {
                     return
                 }
                 for game: Element in gamesList.array() {
-                    guard let teams = try? game.getElementsByClass("slide__command"), let team1 = try? teams.first()?.getElementsByClass("slide__command-name").text(), let team2 = try? teams.last()?.getElementsByClass("slide__command-name").text(), let dateBlock = try? game.getElementsByClass("slide__date-block"), let date = try? game.getElementsByClass("slide__date").text(), let scoresRawValue = try? dateBlock.first()?.getElementsByTag("H4").text(), let arena = try? game.getElementsByClass("slide__match-link").first()?.text() else {return}
+                    guard let teams = try? game.getElementsByClass("slide__command"), let team1 = try? teams.first()?.getElementsByClass("slide__command-name").text(), let team2 = try? teams.last()?.getElementsByClass("slide__command-name").text(), let dateBlock = try? game.getElementsByClass("slide__date-block"), let date = try? game.getElementsByClass("slide__date").text(), let scoresRawValue = try? dateBlock.first()?.getElementsByTag("H4").text(), let arena = try? game.getElementsByClass("slide__match-link").first()?.text(), let visitorImage = try? teams.first()?.getElementsByClass("img-fluid") else {return}
                     var visitorScores: Int = 0
                     var homeScores: Int = 0
                     let separatedScores = scoresRawValue.split(separator: ":", maxSplits: 2, omittingEmptySubsequences: true)
                     if separatedScores.count == 2 {
-                        visitorScores = Int(separatedScores[0].trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
-                        homeScores = Int(separatedScores[1].trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
+                        homeScores = Int(separatedScores[0].trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
+                        visitorScores = Int(separatedScores[1].trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
                     }
                     let homeTeam = TeamModel(name: nil, shortName: team1)
                     let visitorTeam = TeamModel(name: nil, shortName: team2)
