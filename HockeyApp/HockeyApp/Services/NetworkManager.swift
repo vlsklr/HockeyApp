@@ -10,11 +10,12 @@ import SwiftSoup
 
 protocol INetworkManager {
     func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ())
+    func loadInfo(url: String, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 class NetworkManager: INetworkManager {
     
-    private func loadInfo(url: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func loadInfo(url: String, completion: @escaping (Result<Data, Error>) -> Void) {
         guard let url = URL(string: url) else { return }
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
@@ -54,8 +55,8 @@ class NetworkManager: INetworkManager {
                         homeScores = Int(separatedScores[0].trimmingCharacters(in: .whitespacesAndNewlines))
                         visitorScores = Int(separatedScores[1].trimmingCharacters(in: .whitespacesAndNewlines))
                     }
-                    let homeTeam = TeamModel(name: nil, shortName: team1)
-                    let visitorTeam = TeamModel(name: nil, shortName: team2)
+                    var homeTeam = TeamModel(name: nil, shortName: team1)
+                    var visitorTeam = TeamModel(name: nil, shortName: team2)
                     homeTeam.logoLink = homeTeamLogoAddress
                     visitorTeam.logoLink = visitorTeamAddres
                     let game = GameModel(visitorTeam: visitorTeam, homeTeam: homeTeam, visitorScores: visitorScores, homeScores: homeScores, gamedate: date, arena: arena)

@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 struct TeamModel {
     var name: String?
     var shortName: String
     var logoLink: String?
+    var logoImage: UIImage?
 }

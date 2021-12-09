@@ -153,6 +153,11 @@ extension GameCell: IGameCell {
             scores.text = "\(homeScores) : \(visitorScores)"
         }
         arena.text = game.arena
-
+        if let homeTeamImage = game.homeTeam.logoImage {
+            homeTeamLogo.image = homeTeamImage
+        }
+        if let visitorTeamImage = game.visitorTeam.logoImage {
+            visitorTeamLogo.image = visitorTeamImage
+        }
     }
 }
