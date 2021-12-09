@@ -22,13 +22,12 @@ class GamesViewController: UIViewController, IGamesViewController {
     
     let tableView: UITableView = UITableView()
     private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-//    private let presenter: IFavoriteFlyghtListPresenter
     private let refreshControll: UIRefreshControl = {
         let refresh = UIRefreshControl()
 //        refresh.addTarget(self, action: #selector(refreshFlyghts(sender:)), for: .valueChanged)
         return refresh
     }()
-//    var games:[GameModel]?
+
     let presenter: IGamesPresenter
 
     
@@ -61,7 +60,6 @@ class GamesViewController: UIViewController, IGamesViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(GameCell.self, forCellReuseIdentifier: "cell")
-//        tableView.layer.cornerRadius = 25
         tableView.backgroundColor = .white
         tableView.snp.makeConstraints { constraint in
             constraint.top.equalToSuperview().offset(50)
@@ -122,13 +120,12 @@ extension GamesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.getMatchesCount()
     }
-    
-    
-    
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GameCell
+        //Конфигурируется ячейка без данных
         cell.setupCell()
-//        cell.backgroundColor = .white
+        //запрос данных для ячейки
         presenter.getMatchData(indexPath: indexPath, cell: cell)
         return cell
     }

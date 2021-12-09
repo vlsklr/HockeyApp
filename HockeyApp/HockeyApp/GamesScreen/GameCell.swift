@@ -133,7 +133,7 @@ class GameCell: UITableViewCell {
         scores.textAlignment = .center
         scores.textColor = .black
         scores.font = scores.font.withSize(35)
-        scores.text = "0 : 0"
+        scores.text = "- : -"
         scores.snp.makeConstraints { make in
             make.leading.equalTo(homeTeamLogo).offset(15)
             make.trailing.equalTo(visitorTeamLogo).offset(-15)
@@ -149,9 +149,15 @@ extension GameCell: IGameCell {
         homeTeamNameLabel.text = game.homeTeam.shortName
         visitorTeamNameLabel.text = game.visitorTeam.shortName
         gameDate.text = game.gamedate
-        scores.text = "\(game.homeScores) : \(game.visitorScores)"
+        if let homeScores = game.homeScores, let visitorScores = game.visitorScores {
+            scores.text = "\(homeScores) : \(visitorScores)"
+        }
         arena.text = game.arena
+        if let homeTeamImage = game.homeTeam.logoImage {
+            homeTeamLogo.image = homeTeamImage
+        }
+        if let visitorTeamImage = game.visitorTeam.logoImage {
+            visitorTeamLogo.image = visitorTeamImage
+        }
     }
-    
-    
 }
