@@ -11,6 +11,7 @@ import SwiftSoup
 protocol INetworkManager {
     func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ())
     func loadInfo(url: String, completion: @escaping (Result<Data, Error>) -> Void)
+    func loadGameInfo(url: String, game: GameModel, completion: @escaping ( _ game: GameModel) -> ())
 }
 
 class NetworkManager: INetworkManager {
@@ -33,6 +34,19 @@ class NetworkManager: INetworkManager {
         }).resume()
     }
     
+    func loadGameInfo(url: String,  game: GameModel, completion: @escaping ( _ game: GameModel) -> ()) {
+        guard let matchLink = game.matchLink else {return}
+        loadInfo(url: url + matchLink) { result in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print (error)
+            }
+        }
+        
+    }
+    
     func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ()) {
         var matches: [GameModel] = [GameModel]()
         loadInfo(url: url) { result in
@@ -46,9 +60,13 @@ class NetworkManager: INetworkManager {
                 }
                 for game: Element in gamesList.array() {
                     guard let teams = try? game.getElementsByClass("slide__command"), let team1 = try? teams.first()?.getElementsByClass("slide__command-name").text(), let team2 = try? teams.last()?.getElementsByClass("slide__command-name").text(), let dateBlock = try? game.getElementsByClass("slide__date-block"), let date = try? game.getElementsByClass("slide__date").text(), let scoresRawValue = try? dateBlock.first()?.getElementsByTag("H4").text(), let arena = try? game.getElementsByClass("slide__match-link").first()?.text(), let homeTeamLogo = try? teams.first()?.getElementsByClass("img-fluid").attr("src"), let visitorTeamLogo = try? teams.last()?.getElementsByClass("img-fluid").attr("src"), let gameNumberLinkElement = try? game.getElementsByClass("slide__match-info").attr("onclick") else {return}
-                    let gameNumberString = gameNumberLinkElement.substring(from: (gameNumberLinkElement.firstIndex(of: "/")!))
+                   
+                    var gameNumberString: String? = nil
                     var visitorScores: Int?
                     var homeScores: Int?
+                    if let index = gameNumberLinkElement.firstIndex(of: "/") {
+                        gameNumberString = String(gameNumberLinkElement[index...])
+                    }
                     let homeTeamLogoAddress = url + homeTeamLogo.replacingOccurrences(of: "\\", with: "/")
                     let visitorTeamAddres = url + visitorTeamLogo.replacingOccurrences(of: "\\", with: "/")
                     let separatedScores = scoresRawValue.split(separator: ":", maxSplits: 2, omittingEmptySubsequences: true)

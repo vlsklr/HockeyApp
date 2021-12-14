@@ -11,6 +11,7 @@ protocol IGamesPresenter: AnyObject {
     func setLoadedMatches(matches: [GameModel])
     func getMatchesCount() -> Int
     func getMatchData(indexPath: IndexPath, cell: IGameCell)
+    
 }
 
 class GamesPresenter: IGamesPresenter {
