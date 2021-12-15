@@ -11,10 +11,12 @@ protocol IGamesPresenter: AnyObject {
     func setLoadedMatches(matches: [GameModel])
     func getMatchesCount() -> Int
     func getMatchData(indexPath: IndexPath, cell: IGameCell)
+    func showMatch()
     
 }
 
 class GamesPresenter: IGamesPresenter {
+    
     var router: IGamesRouter
     var interactor: IGamesInteractor
     weak var view: IGamesViewController?
@@ -40,6 +42,10 @@ class GamesPresenter: IGamesPresenter {
             return
         }
         cell.setInfo(game: game)        
+    }
+    
+    func showMatch() {
+        router.showMatchInfo()
     }
     
 }

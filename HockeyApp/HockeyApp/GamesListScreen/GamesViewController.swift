@@ -10,9 +10,14 @@ import SnapKit
 
 protocol IGamesViewController: AnyObject {
     func refreshView()
+    func showGame(viewController: GameInfoViewController)
 }
 
 class GamesViewController: UIViewController, IGamesViewController {
+    func showGame(viewController: GameInfoViewController) {
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     func refreshView() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -43,8 +48,7 @@ class GamesViewController: UIViewController, IGamesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.backgroundColor = .systemBlue
-        navigationController?.setNavigationBarHidden(true, animated: false)
+
         tableView.backgroundColor = .white
         tableView.refreshControl = refreshControll
         initActivityIndicator()
@@ -53,6 +57,8 @@ class GamesViewController: UIViewController, IGamesViewController {
     override func viewDidAppear(_ animated: Bool) {
         initTableView()
         tableView.reloadData()
+        self.navigationController?.navigationBar.backgroundColor = .systemBlue
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func initTableView() {
@@ -99,7 +105,8 @@ extension GamesViewController: UITableViewDelegate {
 //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
+        presenter.showMatch()
+//        let cell = tableView.cellForRow(at: indexPath)
         
         //        cell?.selectedBackgroundView?.backgroundColor = .green
         

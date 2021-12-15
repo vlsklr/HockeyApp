@@ -18,6 +18,7 @@ class GamesAssembly {
         interactor.presenter = presenter
         let view = GamesViewController(presenter: presenter)
         presenter.view = view
+        router.view = view
         return view
     }
 }
