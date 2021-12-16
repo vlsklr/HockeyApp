@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10EB1F1E161CC229E11E37C0 /* libPods-HockeyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D27BC8E08430B65A5946F0F /* libPods-HockeyApp.a */; };
+		8407A812276B0858000C3629 /* GameInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8407A811276B0858000C3629 /* GameInfoRouter.swift */; };
 		8451CEE12769B16D0003FCED /* GameInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451CEE02769B16D0003FCED /* GameInfoViewController.swift */; };
 		8451CEE32769B1E30003FCED /* GameInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451CEE22769B1E30003FCED /* GameInfoPresenter.swift */; };
 		8451CEE52769B1F10003FCED /* GameInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451CEE42769B1F10003FCED /* GameInfoInteractor.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		0D27BC8E08430B65A5946F0F /* libPods-HockeyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HockeyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8407A811276B0858000C3629 /* GameInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoRouter.swift; sourceTree = "<group>"; };
 		8451CEE02769B16D0003FCED /* GameInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoViewController.swift; sourceTree = "<group>"; };
 		8451CEE22769B1E30003FCED /* GameInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoPresenter.swift; sourceTree = "<group>"; };
 		8451CEE42769B1F10003FCED /* GameInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoInteractor.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			children = (
 				8451CEE02769B16D0003FCED /* GameInfoViewController.swift */,
 				8451CEE22769B1E30003FCED /* GameInfoPresenter.swift */,
+				8407A811276B0858000C3629 /* GameInfoRouter.swift */,
 				8451CEE42769B1F10003FCED /* GameInfoInteractor.swift */,
 				8451CEE62769B2090003FCED /* GameInfoAssembly.swift */,
 			);
@@ -289,6 +292,7 @@
 				846EFF1D2755F2F30013B27C /* GamesInteractor.swift in Sources */,
 				846EFF1F2755F3620013B27C /* GamesRouter.swift in Sources */,
 				8451CEE52769B1F10003FCED /* GameInfoInteractor.swift in Sources */,
+				8407A812276B0858000C3629 /* GameInfoRouter.swift in Sources */,
 				F53587872749FC0600499806 /* GameCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

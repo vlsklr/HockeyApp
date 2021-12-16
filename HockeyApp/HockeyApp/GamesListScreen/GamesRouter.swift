@@ -8,15 +8,15 @@
 import Foundation
 
 protocol IGamesRouter: AnyObject {
-    func showMatchInfo()
+    func showMatchInfo(game: GameModel)
 }
 
 class GamesRouter: IGamesRouter {
     
     weak var view: IGamesViewController?
     
-    func showMatchInfo() {
-        let vc = GameInfoAssembly().build()
+    func showMatchInfo(game: GameModel) {
+        let vc = GameInfoAssembly().build(game: game)
         view?.showGame(viewController: vc)
     }
     

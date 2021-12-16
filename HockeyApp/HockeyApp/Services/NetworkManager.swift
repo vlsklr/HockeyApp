@@ -39,12 +39,14 @@ class NetworkManager: INetworkManager {
         loadInfo(url: url + matchLink) { result in
             switch result {
             case .success(let data):
-                print(data)
+                guard let stringData = String(data: data, encoding: .utf8) else { return }
+                let gameData = try? SwiftSoup.parse(stringData)
+                print(gameData)
+//                completion(data)
             case .failure(let error):
                 print (error)
             }
         }
-        
     }
     
     func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ()) {

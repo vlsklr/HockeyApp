@@ -9,7 +9,15 @@ import Foundation
 
 
 class GameInfoAssembly {
-    func build() -> GameInfoViewController {
-        return GameInfoViewController()
+    func build(game: GameModel) -> GameInfoViewController {
+        let router = GameInfoRouter()
+        let interactor = GameInfoInteractor()
+        let presenter = GameInfoPresenter(interactor: interactor, game: game)
+        let view = GameInfoViewController(presenter: presenter)
+        presenter.view = view
+        router.view = view
+        interactor.presenter = presenter
+        presenter.getGameInfo()
+        return view
     }
 }

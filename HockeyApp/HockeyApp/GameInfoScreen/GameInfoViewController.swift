@@ -8,10 +8,16 @@
 import Foundation
 import UIKit
 
+protocol IGameInfoViewController: AnyObject {
+    
+}
+
 
 class GameInfoViewController: UIViewController {
+    let presenter: IGameInfoPresenter
         
-    init() {
+    init(presenter: IGameInfoPresenter) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,4 +30,8 @@ class GameInfoViewController: UIViewController {
         self.view.backgroundColor = .green
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
+}
+
+extension GameInfoViewController: IGameInfoViewController {
+    
 }

@@ -105,7 +105,7 @@ extension GamesViewController: UITableViewDelegate {
 //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.showMatch()
+        presenter.showMatch(indexPath: indexPath)
 //        let cell = tableView.cellForRow(at: indexPath)
         
         //        cell?.selectedBackgroundView?.backgroundColor = .green

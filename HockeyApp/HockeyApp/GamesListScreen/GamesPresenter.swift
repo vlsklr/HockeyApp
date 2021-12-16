@@ -11,7 +11,7 @@ protocol IGamesPresenter: AnyObject {
     func setLoadedMatches(matches: [GameModel])
     func getMatchesCount() -> Int
     func getMatchData(indexPath: IndexPath, cell: IGameCell)
-    func showMatch()
+    func showMatch(indexPath: IndexPath)
     
 }
 
@@ -44,8 +44,9 @@ class GamesPresenter: IGamesPresenter {
         cell.setInfo(game: game)        
     }
     
-    func showMatch() {
-        router.showMatchInfo()
+    func showMatch(indexPath: IndexPath) {
+        guard let match = matches?[indexPath.row] else { return }
+        router.showMatchInfo(game: match)
     }
     
 }
