@@ -15,4 +15,6 @@ struct GameModel {
     var gamedate: String
     var arena: String
     let matchLink: String?
+    
+//    let cupName: String?
 }
