@@ -36,12 +36,21 @@ class NetworkManager: INetworkManager {
     
     func loadGameInfo(url: String,  game: GameModel, completion: @escaping ( _ game: GameModel) -> ()) {
         guard let matchLink = game.matchLink else {return}
-        loadInfo(url: url + matchLink) { result in
+        var game = game
+        let urlString = url + matchLink
+        loadInfo(url: urlString) { result in
             switch result {
             case .success(let data):
                 guard let stringData = String(data: data, encoding: .utf8) else { return }
                 let gameData = try? SwiftSoup.parse(stringData)
                 print(gameData)
+                guard let fullNameTeams = try? gameData?.getElementsByClass("url__r") else {
+                    return
+                }
+                print(fullNameTeams)
+                game.homeTeam.name = try? fullNameTeams[0].text()
+                game.visitorTeam.name = try? fullNameTeams[2].text()
+                completion(game)
 //                completion(data)
             case .failure(let error):
                 print (error)
@@ -67,7 +76,8 @@ class NetworkManager: INetworkManager {
                     var visitorScores: Int?
                     var homeScores: Int?
                     if let index = gameNumberLinkElement.firstIndex(of: "/") {
-                        gameNumberString = String(gameNumberLinkElement[index...])
+                        gameNumberString = String(gameNumberLinkElement[index...]).trimmingCharacters(in: .init(charactersIn: "'\\"))
+                        
                     }
                     let homeTeamLogoAddress = url + homeTeamLogo.replacingOccurrences(of: "\\", with: "/")
                     let visitorTeamAddres = url + visitorTeamLogo.replacingOccurrences(of: "\\", with: "/")

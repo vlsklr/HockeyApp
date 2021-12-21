@@ -9,13 +9,13 @@ import Foundation
 
 protocol IGameInfoPresenter: AnyObject {
     func getGameInfo()
+    func setGameInfo(game: GameModel)
 }
 
 class GameInfoPresenter: IGameInfoPresenter {
-    
     weak var view: IGameInfoViewController?
     let interactor: IGameInfoInteractor
-    let game: GameModel
+    var game: GameModel
     
     init(interactor: IGameInfoInteractor, game: GameModel) {
         self.interactor = interactor
@@ -24,6 +24,12 @@ class GameInfoPresenter: IGameInfoPresenter {
     
     func getGameInfo() {
         interactor.getGameInfo(url: "https://sibhl.ru", game: game)
+    }
+    
+    func setGameInfo(game: GameModel) {
+        self.game = game
+        view?.showGameInfo(game: game)
+        
     }
     
     

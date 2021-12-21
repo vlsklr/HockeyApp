@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 protocol IGameInfoViewController: AnyObject {
-    
+    func showGameInfo(game: GameModel)
+
 }
 
 
@@ -33,5 +34,9 @@ class GameInfoViewController: UIViewController {
 }
 
 extension GameInfoViewController: IGameInfoViewController {
+    func showGameInfo(game: GameModel) {
+        print(game.visitorTeam.name)
+    }
+    
     
 }
