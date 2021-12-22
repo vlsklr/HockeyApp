@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 protocol IGameInfoViewController: AnyObject {
     func showGameInfo(game: GameModel)
@@ -16,7 +17,13 @@ protocol IGameInfoViewController: AnyObject {
 
 class GameInfoViewController: UIViewController {
     let presenter: IGameInfoPresenter
-        
+    let homeTeamName = UILabel()
+    let visitorTeamName = UILabel()
+    let homeTeamScore = UILabel()
+    let visitorTeamScore = UILabel()
+    let homeTeamLogo = UIImageView()
+    let visitorTeamLogo = UIImageView()
+    
     init(presenter: IGameInfoPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -26,16 +33,34 @@ class GameInfoViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func viewDidLoad() {
-        self.view.backgroundColor = .green
         navigationController?.setNavigationBarHidden(false, animated: false)
+        setHomeTeamNameLabel()
+    }
+    
+    func setHomeTeamNameLabel() {
+        view.addSubview(homeTeamName)
+        homeTeamName.text = "Хозяева"
+        homeTeamName.textColor = .black
+        homeTeamName.font = homeTeamName.font.withSize(15)
+        homeTeamName.textAlignment = .center
+        homeTeamName.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(150)
+            make.leading.equalToSuperview().offset(50)
+            make.width.equalTo(75)
+            make.height.equalTo(50)
+        }
+        
     }
 }
 
 extension GameInfoViewController: IGameInfoViewController {
     func showGameInfo(game: GameModel) {
-        print(game.visitorTeam.name)
+        guard let homeTeamNameText = game.visitorTeam.name else { return }
+//        print()
+        DispatchQueue.main.async {
+            self.homeTeamName.text = homeTeamNameText
+        }
     }
     
     
