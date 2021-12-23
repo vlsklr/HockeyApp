@@ -50,7 +50,7 @@ class GameInfoViewController: UIViewController {
         view.addSubview(homeTeamLogo)
 //        homeTeamLogo.image = UIImage(named: "photo_70")
         homeTeamLogo.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(125)
+            make.top.equalToSuperview().offset(100)
             make.leading.equalToSuperview().offset(25)
             make.width.equalTo(85)
             make.height.equalTo(85)
@@ -66,7 +66,7 @@ class GameInfoViewController: UIViewController {
         homeTeamName.font = homeTeamName.font.withSize(15)
         homeTeamName.textAlignment = .center
         homeTeamName.snp.makeConstraints { make in
-            make.top.equalTo(homeTeamLogo.snp_bottomMargin).offset(5)
+            make.top.equalTo(homeTeamLogo.snp_bottomMargin).offset(-20)
             make.leading.equalTo(homeTeamLogo)
             make.width.equalTo(85)
             make.height.equalTo(85)
@@ -78,7 +78,7 @@ class GameInfoViewController: UIViewController {
 //        visitorTeamLogo.image = UIImage(named: "photo_70")
         visitorTeamLogo.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-25)
-            make.top.equalToSuperview().offset(125)
+            make.top.equalToSuperview().offset(100)
             make.width.equalTo(85)
             make.height.equalTo(85)
         }
@@ -93,7 +93,7 @@ class GameInfoViewController: UIViewController {
         visitorTeamName.font = visitorTeamName.font.withSize(15)
         visitorTeamName.textAlignment = .center
         visitorTeamName.snp.makeConstraints { make in
-            make.top.equalTo(visitorTeamLogo.snp_bottomMargin).offset(5)
+            make.top.equalTo(visitorTeamLogo.snp_bottomMargin).offset(-20)
             make.leading.equalTo(visitorTeamLogo)
             make.width.equalTo(85)
             make.height.equalTo(85)
@@ -112,8 +112,9 @@ class GameInfoViewController: UIViewController {
     func setScoresLablel() {
         view.addSubview(scores)
         scores.textAlignment = .center
+        scores.font = scores.font.withSize(20)
         scores.snp.makeConstraints { make in
-            make.top.equalTo(stadiumName).offset(20)
+            make.top.equalTo(stadiumName.snp_bottomMargin).offset(20)
             make.centerX.equalTo(self.view)
         }
         
