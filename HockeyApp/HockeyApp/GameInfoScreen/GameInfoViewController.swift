@@ -25,7 +25,8 @@ class GameInfoViewController: UIViewController {
     let visitorTeamLogo = UIImageView()
     let stadiumName = UILabel()
     let scores = UILabel()
-    
+    let cupName = UILabel()
+    let eventsView = UITableView()
     init(presenter: IGameInfoPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -44,11 +45,12 @@ class GameInfoViewController: UIViewController {
         setVisitorNameLabel()
         setStadiumLabel()
         setScoresLablel()
+        setCupName()
+        setEventsView()
     }
     
     func setHomeTeamLogo() {
         view.addSubview(homeTeamLogo)
-//        homeTeamLogo.image = UIImage(named: "photo_70")
         homeTeamLogo.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(100)
             make.leading.equalToSuperview().offset(25)
@@ -61,7 +63,6 @@ class GameInfoViewController: UIViewController {
     func setHomeTeamNameLabel() {
         view.addSubview(homeTeamName)
         homeTeamName.numberOfLines = 0
-//        homeTeamName.text = "Хозяева"
         homeTeamName.textColor = .black
         homeTeamName.font = homeTeamName.font.withSize(15)
         homeTeamName.textAlignment = .center
@@ -75,20 +76,17 @@ class GameInfoViewController: UIViewController {
     
     func setVisitorTeamLogo() {
         view.addSubview(visitorTeamLogo)
-//        visitorTeamLogo.image = UIImage(named: "photo_70")
         visitorTeamLogo.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-25)
             make.top.equalToSuperview().offset(100)
             make.width.equalTo(85)
             make.height.equalTo(85)
         }
-        
     }
     
     func setVisitorNameLabel() {
         view.addSubview(visitorTeamName)
         visitorTeamName.numberOfLines = 0
-//        visitorTeamName.text = "Хозяева"
         visitorTeamName.textColor = .black
         visitorTeamName.font = visitorTeamName.font.withSize(15)
         visitorTeamName.textAlignment = .center
@@ -119,11 +117,32 @@ class GameInfoViewController: UIViewController {
         }
         
     }
+    
+    func setCupName() {
+        view.addSubview(cupName)
+        cupName.textAlignment = .center
+        cupName.font = cupName.font.withSize(13)
+        cupName.snp.makeConstraints { make in
+            make.top.equalTo(scores.snp_bottomMargin).offset(20)
+            make.centerX.equalTo(self.view)
+        }
+    }
+    
+    func setEventsView() {
+        view.addSubview(eventsView)
+        eventsView.backgroundColor = .blue
+        eventsView.snp.makeConstraints { make in
+            make.top.equalTo(visitorTeamName).offset(75)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-50)
+        }
+    }
 }
 
 extension GameInfoViewController: IGameInfoViewController {
     func showGameInfo(game: GameModel) {
-        guard let homeTeamNameText = game.homeTeam.name, let visitorTeamNameText = game.visitorTeam.name, let homeScores = game.homeScores, let visitorScores = game.visitorScores else { return }
+        guard let homeTeamNameText = game.homeTeam.name, let visitorTeamNameText = game.visitorTeam.name, let homeScores = game.homeScores, let visitorScores = game.visitorScores, let cupName = game.cupName else { return }
 //        print()
         DispatchQueue.main.async {
             self.homeTeamName.text = homeTeamNameText
@@ -132,6 +151,7 @@ extension GameInfoViewController: IGameInfoViewController {
             self.homeTeamLogo.image = game.homeTeam.logoImage
             self.stadiumName.text = game.arena
             self.scores.text = "\(homeScores) : \(visitorScores)"
+            self.cupName.text = cupName
         }
     }
     

@@ -50,6 +50,7 @@ class NetworkManager: INetworkManager {
                 print(fullNameTeams)
                 game.homeTeam.name = try? fullNameTeams[0].text()
                 game.visitorTeam.name = try? fullNameTeams[2].text()
+                game.cupName = try? fullNameTeams[1].text()
                 completion(game)
 //                completion(data)
             case .failure(let error):
@@ -90,7 +91,7 @@ class NetworkManager: INetworkManager {
                     var visitorTeam = TeamModel(name: nil, shortName: team2)
                     homeTeam.logoLink = homeTeamLogoAddress
                     visitorTeam.logoLink = visitorTeamAddres
-                    let game = GameModel(visitorTeam: visitorTeam, homeTeam: homeTeam, visitorScores: visitorScores, homeScores: homeScores, gamedate: date, arena: arena, matchLink: gameNumberString)
+                    let game = GameModel(visitorTeam: visitorTeam, homeTeam: homeTeam, visitorScores: visitorScores, homeScores: homeScores, gamedate: date, arena: arena, matchLink: gameNumberString, cupName: nil)
                     matches.append(game)
                 }
                 completion(matches)
