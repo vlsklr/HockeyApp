@@ -41,17 +41,37 @@ class NetworkManager: INetworkManager {
         loadInfo(url: urlString) { result in
             switch result {
             case .success(let data):
+                var eventsList = [EventModel]()
                 guard let stringData = String(data: data, encoding: .utf8) else { return }
                 let gameData = try? SwiftSoup.parse(stringData)
-                print(gameData)
-                guard let fullNameTeams = try? gameData?.getElementsByClass("url__r") else {
-                    return
+                guard let fullNameTeams = try? gameData?.getElementsByClass("url__r"), let events = try? gameData?.getElementsByClass("events__col-bg") else { return }
+                for element in events {
+                    
+                    //                    print(try? element.getElementsByClass("events__icon").hasClass("right"))
+                    if let iconPath = try? element.getElementsByClass("img-fluid").attr("src"), iconPath.contains("goal"), let description = try? element.getElementsByClass("events__names").text() {
+                        let eventTeam = try? element.getElementsByClass("events__icon").hasClass("right")
+                        let event = EventModel(type: .goal, description: description, isHomeTeamEvent: eventTeam ?? false)
+                        eventsList.append(event)
+                        
+                        
+                    } else if let iconPath = try? element.getElementsByClass("img-fluid").attr("src"), iconPath.contains("ejection"), let description = try? element.getElementsByClass("events__names").text() {
+                        let eventTeam = try? element.getElementsByClass("events__icon").hasClass("right")
+                        let event = EventModel(type: .ejection, description: description, isHomeTeamEvent: eventTeam ?? false)
+                        eventsList.append(event)
+                    }
+                    
                 }
-                print(fullNameTeams)
+                
+                /*
+                 po tmp[4].getElementsByClass("events__name").first()?.text()
+                 ▿ Optional<String>
+                 - some : "Колобов Олег"
+                 */
                 game.homeTeam.name = try? fullNameTeams[0].text()
                 game.visitorTeam.name = try? fullNameTeams[2].text()
+                game.cupName = try? fullNameTeams[1].text()
+                game.events = eventsList
                 completion(game)
-//                completion(data)
             case .failure(let error):
                 print (error)
             }
@@ -71,7 +91,7 @@ class NetworkManager: INetworkManager {
                 }
                 for game: Element in gamesList.array() {
                     guard let teams = try? game.getElementsByClass("slide__command"), let team1 = try? teams.first()?.getElementsByClass("slide__command-name").text(), let team2 = try? teams.last()?.getElementsByClass("slide__command-name").text(), let dateBlock = try? game.getElementsByClass("slide__date-block"), let date = try? game.getElementsByClass("slide__date").text(), let scoresRawValue = try? dateBlock.first()?.getElementsByTag("H4").text(), let arena = try? game.getElementsByClass("slide__match-link").first()?.text(), let homeTeamLogo = try? teams.first()?.getElementsByClass("img-fluid").attr("src"), let visitorTeamLogo = try? teams.last()?.getElementsByClass("img-fluid").attr("src"), let gameNumberLinkElement = try? game.getElementsByClass("slide__match-info").attr("onclick") else {return}
-                   
+                    
                     var gameNumberString: String? = nil
                     var visitorScores: Int?
                     var homeScores: Int?
@@ -90,7 +110,7 @@ class NetworkManager: INetworkManager {
                     var visitorTeam = TeamModel(name: nil, shortName: team2)
                     homeTeam.logoLink = homeTeamLogoAddress
                     visitorTeam.logoLink = visitorTeamAddres
-                    let game = GameModel(visitorTeam: visitorTeam, homeTeam: homeTeam, visitorScores: visitorScores, homeScores: homeScores, gamedate: date, arena: arena, matchLink: gameNumberString)
+                    let game = GameModel(visitorTeam: visitorTeam, homeTeam: homeTeam, visitorScores: visitorScores, homeScores: homeScores, gamedate: date, arena: arena, matchLink: gameNumberString, cupName: nil)
                     matches.append(game)
                 }
                 completion(matches)

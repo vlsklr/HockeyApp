@@ -13,6 +13,7 @@
 		8451CEE32769B1E30003FCED /* GameInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451CEE22769B1E30003FCED /* GameInfoPresenter.swift */; };
 		8451CEE52769B1F10003FCED /* GameInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451CEE42769B1F10003FCED /* GameInfoInteractor.swift */; };
 		8451CEE72769B2090003FCED /* GameInfoAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451CEE62769B2090003FCED /* GameInfoAssembly.swift */; };
+		845538BD2776E0110085591F /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845538BC2776E0110085591F /* EventModel.swift */; };
 		846EFF1B2755F2E20013B27C /* GamesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EFF1A2755F2E20013B27C /* GamesPresenter.swift */; };
 		846EFF1D2755F2F30013B27C /* GamesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EFF1C2755F2F30013B27C /* GamesInteractor.swift */; };
 		846EFF1F2755F3620013B27C /* GamesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EFF1E2755F3620013B27C /* GamesRouter.swift */; };
@@ -39,6 +40,7 @@
 		8451CEE22769B1E30003FCED /* GameInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoPresenter.swift; sourceTree = "<group>"; };
 		8451CEE42769B1F10003FCED /* GameInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoInteractor.swift; sourceTree = "<group>"; };
 		8451CEE62769B2090003FCED /* GameInfoAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoAssembly.swift; sourceTree = "<group>"; };
+		845538BC2776E0110085591F /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		846EFF1A2755F2E20013B27C /* GamesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesPresenter.swift; sourceTree = "<group>"; };
 		846EFF1C2755F2F30013B27C /* GamesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesInteractor.swift; sourceTree = "<group>"; };
 		846EFF1E2755F3620013B27C /* GamesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesRouter.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				F562A777275B7709001C7D1F /* PlayerModel.swift */,
 				F562A778275B7709001C7D1F /* GameModel.swift */,
 				F562A779275B7709001C7D1F /* TeamModel.swift */,
+				845538BC2776E0110085591F /* EventModel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				846EFF1B2755F2E20013B27C /* GamesPresenter.swift in Sources */,
 				F57453A527491A460034C393 /* AppDelegate.swift in Sources */,
 				F562A77B275B7709001C7D1F /* PlayerModel.swift in Sources */,
+				845538BD2776E0110085591F /* EventModel.swift in Sources */,
 				8451CEE32769B1E30003FCED /* GameInfoPresenter.swift in Sources */,
 				F57453AF27491A460034C393 /* HockeyApp.xcdatamodeld in Sources */,
 				F562A77C275B7709001C7D1F /* GameModel.swift in Sources */,
