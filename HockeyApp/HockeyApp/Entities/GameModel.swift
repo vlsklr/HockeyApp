@@ -16,4 +16,5 @@ struct GameModel {
     var arena: String
     let matchLink: String?
     var cupName: String?
+    var events: [EventModel]?
 }
