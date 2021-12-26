@@ -57,7 +57,7 @@ class GamesViewController: UIViewController, IGamesViewController {
     override func viewDidAppear(_ animated: Bool) {
         initTableView()
         tableView.reloadData()
-        self.navigationController?.navigationBar.backgroundColor = .systemBlue
+//        self.navigationController?.navigationBar.backgroundColor = .systemBlue
         navigationController?.setNavigationBarHidden(true, animated: false)
         tabBarController?.tabBar.isHidden = false
     }

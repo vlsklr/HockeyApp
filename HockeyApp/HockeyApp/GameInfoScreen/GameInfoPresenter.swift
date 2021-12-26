@@ -10,6 +10,8 @@ import Foundation
 protocol IGameInfoPresenter: AnyObject {
     func getGameInfo()
     func setGameInfo(game: GameModel)
+    func getEventsCount() -> Int
+    func setEventInfoToCell(cell: EventCell, indexPath: IndexPath)
 }
 
 class GameInfoPresenter: IGameInfoPresenter {
@@ -30,9 +32,16 @@ class GameInfoPresenter: IGameInfoPresenter {
         self.game = game
         view?.showGameInfo(game: game)
         
+        
     }
     
+    func getEventsCount() -> Int {
+        return game.events?.count ?? 0
+    }
     
-    
+    func setEventInfoToCell(cell: EventCell, indexPath: IndexPath) {
+        guard let event = game.events?[indexPath.row] else { return }
+        cell.setupCell(event: event)
+    }
     
 }

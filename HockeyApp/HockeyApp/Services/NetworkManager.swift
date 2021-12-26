@@ -47,8 +47,8 @@ class NetworkManager: INetworkManager {
                 guard let fullNameTeams = try? gameData?.getElementsByClass("url__r"), let events = try? gameData?.getElementsByClass("events__col-bg") else { return }
                 for element in events {
                     
-                    //                    print(try? element.getElementsByClass("events__icon").hasClass("right"))
                     if let iconPath = try? element.getElementsByClass("img-fluid").attr("src"), iconPath.contains("goal"), let description = try? element.getElementsByClass("events__names").text() {
+                        //если иконка имеет класс right, то событие относится к гостевой команде
                         let eventTeam = try? element.getElementsByClass("events__icon").hasClass("right")
                         let event = EventModel(type: .goal, description: description, isHomeTeamEvent: eventTeam ?? false)
                         eventsList.append(event)

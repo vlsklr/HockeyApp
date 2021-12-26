@@ -11,6 +11,7 @@ import SnapKit
 
 protocol IGameInfoViewController: AnyObject {
     func showGameInfo(game: GameModel)
+    func refreshTable()
 
 }
 
@@ -39,6 +40,8 @@ class GameInfoViewController: UIViewController {
     override func viewDidLoad() {
         navigationController?.setNavigationBarHidden(false, animated: false)
         tabBarController?.tabBar.isHidden = true
+        eventsView.dataSource = self
+        eventsView.delegate = self
         setHomeTeamLogo()
         setHomeTeamNameLabel()
         setVisitorTeamLogo()
@@ -101,6 +104,7 @@ class GameInfoViewController: UIViewController {
     func setStadiumLabel() {
         view.addSubview(stadiumName)
         stadiumName.textAlignment = .center
+        stadiumName.textColor = .black
         stadiumName.snp.makeConstraints { make in
             make.top.equalTo(visitorTeamLogo.snp.centerY).offset(-20)
             make.centerX.equalTo(self.view)
@@ -111,6 +115,7 @@ class GameInfoViewController: UIViewController {
         view.addSubview(scores)
         scores.textAlignment = .center
         scores.font = scores.font.withSize(20)
+        scores.textColor = .black
         scores.snp.makeConstraints { make in
             make.top.equalTo(stadiumName.snp_bottomMargin).offset(20)
             make.centerX.equalTo(self.view)
@@ -122,6 +127,7 @@ class GameInfoViewController: UIViewController {
         view.addSubview(cupName)
         cupName.textAlignment = .center
         cupName.font = cupName.font.withSize(13)
+        cupName.textColor = .black
         cupName.snp.makeConstraints { make in
             make.top.equalTo(scores.snp_bottomMargin).offset(20)
             make.centerX.equalTo(self.view)
@@ -130,7 +136,8 @@ class GameInfoViewController: UIViewController {
     
     func setEventsView() {
         view.addSubview(eventsView)
-        eventsView.backgroundColor = .blue
+//        eventsView.backgroundColor = .blue
+        eventsView.register(EventCell.self, forCellReuseIdentifier: "event")
         eventsView.snp.makeConstraints { make in
             make.top.equalTo(visitorTeamName).offset(75)
             make.leading.equalToSuperview()
@@ -141,9 +148,12 @@ class GameInfoViewController: UIViewController {
 }
 
 extension GameInfoViewController: IGameInfoViewController {
+    func refreshTable() {
+        eventsView.reloadData()
+    }
+    
     func showGameInfo(game: GameModel) {
         guard let homeTeamNameText = game.homeTeam.name, let visitorTeamNameText = game.visitorTeam.name, let homeScores = game.homeScores, let visitorScores = game.visitorScores, let cupName = game.cupName else { return }
-//        print()
         DispatchQueue.main.async {
             self.homeTeamName.text = homeTeamNameText
             self.visitorTeamName.text = visitorTeamNameText
@@ -152,7 +162,29 @@ extension GameInfoViewController: IGameInfoViewController {
             self.stadiumName.text = game.arena
             self.scores.text = "\(homeScores) : \(visitorScores)"
             self.cupName.text = cupName
+            self.refreshTable()
         }
+    }
+}
+
+extension GameInfoViewController: UITableViewDelegate {
+    
+}
+
+extension GameInfoViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150.00
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.getEventsCount()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "event") as! EventCell
+        presenter.setEventInfoToCell(cell: cell, indexPath: indexPath)
+        return cell
     }
     
     
