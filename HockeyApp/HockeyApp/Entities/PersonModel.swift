@@ -9,6 +9,7 @@ import Foundation
 
 
 struct PersonModel {
-    var firstName: String
-    var secondName: String
+    var name: String
+//    var firstName: String
+//    var secondName: String
 }

@@ -25,6 +25,7 @@ class EventCell: UITableViewCell {
         backgroundColor = .white
         selectionStyle = .none
         eventDescription.textColor = .black
+        eventDescription.numberOfLines = 0
         eventDescription.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(10)
@@ -36,7 +37,12 @@ class EventCell: UITableViewCell {
     
     func setupCell(event: EventModel) {
         setupDescription()
-        eventDescription.text = event.description
+        var descriptionString = ""
+        for name in event.players {
+            descriptionString += "\(name.name)\n"
+        }
+//        let descriptionString = "\(event.players)"
+        eventDescription.text = descriptionString
         
     }
 
