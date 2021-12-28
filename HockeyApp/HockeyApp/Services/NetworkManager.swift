@@ -44,10 +44,10 @@ class NetworkManager: INetworkManager {
                 var eventsList = [EventModel]()
                 guard let stringData = String(data: data, encoding: .utf8) else { return }
                 let gameData = try? SwiftSoup.parse(stringData)
-                guard let fullNameTeams = try? gameData?.getElementsByClass("url__r"), let events = try? gameData?.getElementsByClass("events__col-bg") else { return }
+                guard let fullNameTeams = try? gameData?.getElementsByClass("url__r"), let events = try? gameData?.getElementsByClass("events__col-bg"), let eventsTime = try? gameData?.getElementsByClass("events__col") else { return }
+                var index = 0
                 for element in events {
-                    
-                    if let iconPath = try? element.getElementsByClass("img-fluid").attr("src"), iconPath.contains("goal"), let description = try? element.getElementsByClass("events__names").text(), let names = try? element.getElementsByClass("events__name") {
+                    if let iconPath = try? element.getElementsByClass("img-fluid").attr("src"), iconPath.contains("goal"), let names = try? element.getElementsByClass("events__name"), let timeDescription = try? eventsTime.get(index), let time = try? timeDescription.getElementsByClass("events__time").text(), let description = try? timeDescription.getElementsByClass("line-up").text() {
                         //если иконка имеет класс right, то событие относится к гостевой команде
                         let eventTeam = try? element.getElementsByClass("events__icon").hasClass("right")
                         var persons = [PersonModel]()
@@ -59,6 +59,7 @@ class NetworkManager: INetworkManager {
                         }
                         let event = EventModel(type: .goal, description: description, isHomeTeamEvent: eventTeam ?? false, players: persons)
                         eventsList.append(event)
+                        index += 1
                         
                         
                     } else if let iconPath = try? element.getElementsByClass("img-fluid").attr("src"), iconPath.contains("ejection"), let description = try? element.getElementsByClass("events__name").last()?.text(), let name = try? element.getElementsByClass("events__name").first()?.text() {

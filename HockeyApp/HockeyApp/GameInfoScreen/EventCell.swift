@@ -13,12 +13,12 @@ class EventCell: UITableViewCell {
     let eventDescription = UILabel()
     
     override func awakeFromNib() {
-         super.awakeFromNib()
-     }
-     
-     override func setSelected(_ selected: Bool, animated: Bool) {
-         super.setSelected(selected, animated: animated)
-     }
+        super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
     
     func setupDescription() {
         contentView.addSubview(eventDescription)
@@ -41,9 +41,9 @@ class EventCell: UITableViewCell {
         for name in event.players {
             descriptionString += "\(name.name)\n"
         }
-//        let descriptionString = "\(event.players)"
         eventDescription.text = descriptionString
-        
+        if event.isHomeTeamEvent {
+            eventDescription.textAlignment = .right
+        }
     }
-
 }
