@@ -17,4 +17,5 @@ struct EventModel {
     let description: String
     let isHomeTeamEvent: Bool
     let players: [PersonModel]
+    let time: String
 }

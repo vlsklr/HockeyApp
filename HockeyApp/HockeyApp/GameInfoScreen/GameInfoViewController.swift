@@ -181,7 +181,7 @@ extension GameInfoViewController: UITableViewDataSource {
         return presenter.getEventsCount()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {	
         let cell = tableView.dequeueReusableCell(withIdentifier: "event") as! EventCell
         presenter.setEventInfoToCell(cell: cell, indexPath: indexPath)
         return cell
