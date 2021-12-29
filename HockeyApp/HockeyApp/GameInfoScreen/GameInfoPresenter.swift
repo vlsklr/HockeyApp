@@ -43,5 +43,4 @@ class GameInfoPresenter: IGameInfoPresenter {
         guard let event = game.events?[indexPath.row] else { return }
         cell.setupCell(event: event)
     }
-    
 }
