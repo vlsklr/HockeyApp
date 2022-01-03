@@ -9,11 +9,14 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol IEventCell {
+    func setupCell(event: EventModel)
+}
+
 class EventCell: UITableViewCell {
     let players = UILabel()
     let eventDescription = UILabel()
     let eventIcon = UIImageView()
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,15 +26,15 @@ class EventCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setPlayers(isHomeEvent: Bool) {
+    func setPlayers() {
         contentView.addSubview(players)
         backgroundColor = .white
         selectionStyle = .none
-        eventDescription.textColor = .black
-        eventDescription.numberOfLines = 0
+        players.textColor = .black
+        players.numberOfLines = 0
     }
     
-    func setupDescription(isHomeEvent: Bool) {
+    func setupDescription() {
         contentView.addSubview(eventDescription)
         backgroundColor = .white
         selectionStyle = .none
@@ -42,46 +45,14 @@ class EventCell: UITableViewCell {
             make.top.equalToSuperview().offset(10)
             make.centerX.equalTo(self.contentView)
             make.width.equalTo(self.contentView.bounds.width * 0.3)
-//            make.leading.equalToSuperview().offset(isHomeEvent ? 10 : 100)
-//            make.trailing.equalToSuperview().offset(isHomeEvent ? -100 : -10)
             make.bottom.equalToSuperview().offset(-10)
         }
     }
     
-    func setupEventIcon(isHomeEvent: Bool, eventType: EventType) {
+    func setupEventIcon(eventType: EventType) {
         contentView.addSubview(eventIcon)
         let isGoalEvent = eventType == EventType.goal
-        eventIcon.image = UIImage(named: isGoalEvent ? "goal.svg" : "ejection.svg")
-        eventIcon.snp.makeConstraints { make in
-            make.centerY.equalTo(self.contentView)
-//            make.top.equalToSuperview().offset(10)
-//            make.bottom.equalToSuperview().offset(-10)
-            if isHomeEvent {
-                make.leading.equalToSuperview().offset(10)
-            } else {
-                make.trailing.equalToSuperview().offset(-10)
-            }
-            make.width.equalTo(50)
-            make.height.equalTo(50)
-        }
-        
-    }
-    
-    func setupCell(event: EventModel) {
-        setupDescription(isHomeEvent: event.isHomeTeamEvent)
-        var players = ""
-        for name in event.players {
-            players += "\(name.name)\n"
-        }
-        
-        eventDescription.text = event.time + "\n \(event.description)"
-//        if event.isHomeTeamEvent {
-//            eventDescription.textAlignment = .right
-//        } else {
-//            eventDescription.textAlignment = .left
-//        }
-        
-        setupEventIcon(isHomeEvent: event.isHomeTeamEvent, eventType: event.type)
-        
+        eventIcon.image = UIImage(named: isGoalEvent ? "goal" : "ejection")
     }
 }
+

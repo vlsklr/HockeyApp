@@ -136,8 +136,8 @@ class GameInfoViewController: UIViewController {
     
     func setEventsView() {
         view.addSubview(eventsView)
-//        eventsView.backgroundColor = .blue
-        eventsView.register(EventCell.self, forCellReuseIdentifier: "event")
+        eventsView.register(HomeEventCell.self, forCellReuseIdentifier: "homeEvent")
+        eventsView.register(VisitorEventCell.self, forCellReuseIdentifier: "visitorEvent")
         eventsView.snp.makeConstraints { make in
             make.top.equalTo(visitorTeamName).offset(75)
             make.leading.equalToSuperview()
@@ -167,11 +167,7 @@ extension GameInfoViewController: IGameInfoViewController {
     }
 }
 
-extension GameInfoViewController: UITableViewDelegate {
-    
-}
-
-extension GameInfoViewController: UITableViewDataSource {
+extension GameInfoViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150.00
@@ -181,11 +177,15 @@ extension GameInfoViewController: UITableViewDataSource {
         return presenter.getEventsCount()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {	
-        let cell = tableView.dequeueReusableCell(withIdentifier: "event") as! EventCell
-        presenter.setEventInfoToCell(cell: cell, indexPath: indexPath)
-        return cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if presenter.getEventSide(indexPath: indexPath) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "homeEvent") as! HomeEventCell
+            presenter.setEventInfoToCell(cell: cell, indexPath: indexPath)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "visitorEvent") as! VisitorEventCell
+            presenter.setEventInfoToCell(cell: cell, indexPath: indexPath)
+            return cell
+        }
     }
-    
-    
 }

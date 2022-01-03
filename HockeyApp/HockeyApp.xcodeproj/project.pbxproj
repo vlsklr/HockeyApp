@@ -21,6 +21,8 @@
 		84770F2027782BE2003449DD /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84770F1F27782BE2003449DD /* EventCell.swift */; };
 		84FC5F4D274F5E4200CC26FE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC5F4C274F5E4200CC26FE /* NetworkManager.swift */; };
 		F53587872749FC0600499806 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53587862749FC0600499806 /* GameCell.swift */; };
+		F547A7C82782B85C00D5B022 /* VisitorEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547A7C72782B85C00D5B022 /* VisitorEventCell.swift */; };
+		F547A7CE2782C18200D5B022 /* HomeEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547A7CD2782C18200D5B022 /* HomeEventCell.swift */; };
 		F562A77A275B7709001C7D1F /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F562A776275B7709001C7D1F /* PersonModel.swift */; };
 		F562A77B275B7709001C7D1F /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F562A777275B7709001C7D1F /* PlayerModel.swift */; };
 		F562A77C275B7709001C7D1F /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F562A778275B7709001C7D1F /* GameModel.swift */; };
@@ -51,6 +53,8 @@
 		CED57A8835E768C0660C961F /* Pods-HockeyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HockeyApp.debug.xcconfig"; path = "Target Support Files/Pods-HockeyApp/Pods-HockeyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F518DD2D0851C812D49D3FE6 /* Pods-HockeyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HockeyApp.release.xcconfig"; path = "Target Support Files/Pods-HockeyApp/Pods-HockeyApp.release.xcconfig"; sourceTree = "<group>"; };
 		F53587862749FC0600499806 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		F547A7C72782B85C00D5B022 /* VisitorEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorEventCell.swift; sourceTree = "<group>"; };
+		F547A7CD2782C18200D5B022 /* HomeEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEventCell.swift; sourceTree = "<group>"; };
 		F562A776275B7709001C7D1F /* PersonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		F562A777275B7709001C7D1F /* PlayerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		F562A778275B7709001C7D1F /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				8407A811276B0858000C3629 /* GameInfoRouter.swift */,
 				8451CEE42769B1F10003FCED /* GameInfoInteractor.swift */,
 				8451CEE62769B2090003FCED /* GameInfoAssembly.swift */,
+				F547A7C72782B85C00D5B022 /* VisitorEventCell.swift */,
+				F547A7CD2782C18200D5B022 /* HomeEventCell.swift */,
 			);
 			path = GameInfoScreen;
 			sourceTree = "<group>";
@@ -283,6 +289,7 @@
 				F562A77A275B7709001C7D1F /* PersonModel.swift in Sources */,
 				846EFF1B2755F2E20013B27C /* GamesPresenter.swift in Sources */,
 				F57453A527491A460034C393 /* AppDelegate.swift in Sources */,
+				F547A7CE2782C18200D5B022 /* HomeEventCell.swift in Sources */,
 				F562A77B275B7709001C7D1F /* PlayerModel.swift in Sources */,
 				845538BD2776E0110085591F /* EventModel.swift in Sources */,
 				8451CEE32769B1E30003FCED /* GameInfoPresenter.swift in Sources */,
@@ -296,6 +303,7 @@
 				F57453D72749380C0034C393 /* TabBarController.swift in Sources */,
 				F57453C827492AF20034C393 /* GamesViewController.swift in Sources */,
 				F562A77D275B7709001C7D1F /* TeamModel.swift in Sources */,
+				F547A7C82782B85C00D5B022 /* VisitorEventCell.swift in Sources */,
 				8451CEE12769B16D0003FCED /* GameInfoViewController.swift in Sources */,
 				846EFF1D2755F2F30013B27C /* GamesInteractor.swift in Sources */,
 				846EFF1F2755F3620013B27C /* GamesRouter.swift in Sources */,

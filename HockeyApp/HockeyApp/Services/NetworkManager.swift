@@ -76,8 +76,8 @@ class NetworkManager: INetworkManager {
                         let eventTeam = try? element.getElementsByClass("events__icon").hasClass("right")
                         let event = EventModel(type: .ejection, description: description, isHomeTeamEvent: eventTeam ?? false, players: persons, time: time)
                         eventsList.append(event)
+                        index += 1
                     }
-                    
                 }
                 
                 /*
