@@ -11,10 +11,12 @@ protocol IGameInfoPresenter: AnyObject {
     func getGameInfo()
     func setGameInfo(game: GameModel)
     func getEventsCount() -> Int
-    func setEventInfoToCell(cell: EventCell, indexPath: IndexPath)
+    func setEventInfoToCell(cell: IEventCell, indexPath: IndexPath)
+    func getEventSide(indexPath: IndexPath) -> Bool
 }
 
 class GameInfoPresenter: IGameInfoPresenter {
+    
     weak var view: IGameInfoViewController?
     let interactor: IGameInfoInteractor
     var game: GameModel
@@ -31,16 +33,19 @@ class GameInfoPresenter: IGameInfoPresenter {
     func setGameInfo(game: GameModel) {
         self.game = game
         view?.showGameInfo(game: game)
-        
-        
     }
     
     func getEventsCount() -> Int {
         return game.events?.count ?? 0
     }
     
-    func setEventInfoToCell(cell: EventCell, indexPath: IndexPath) {
+    func setEventInfoToCell(cell: IEventCell, indexPath: IndexPath) {
         guard let event = game.events?[indexPath.row] else { return }
         cell.setupCell(event: event)
+    }
+    
+    func getEventSide(indexPath: IndexPath) -> Bool {
+        guard let event = game.events?[indexPath.row] else { return false }
+        return event.isHomeTeamEvent
     }
 }

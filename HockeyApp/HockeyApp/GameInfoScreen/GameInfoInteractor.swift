@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol IGameInfoInteractor {
     func getGameInfo(url: String, game: GameModel)
     
@@ -20,9 +19,7 @@ class GameInfoInteractor: IGameInfoInteractor {
     
     func getGameInfo(url: String, game: GameModel) {
         networkManager.loadGameInfo(url: url, game: game) { game in
-            print(game)
             self.presenter?.setGameInfo(game: game)
-//            self.presenter
         }
     }
 }
