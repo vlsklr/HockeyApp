@@ -12,6 +12,7 @@ protocol INetworkManager {
     func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ())
     func loadInfo(url: String, completion: @escaping (Result<Data, Error>) -> Void)
     func loadGameInfo(url: String, game: GameModel, completion: @escaping ( _ game: GameModel) -> ())
+    func loadTables(_ urlString: String, completion: @escaping( _ teamsStats: [String]) -> ())
 }
 
 class NetworkManager: INetworkManager {
@@ -65,12 +66,10 @@ class NetworkManager: INetworkManager {
                         let event = EventModel(type: .goal, description: description, isHomeTeamEvent: eventTeam ?? false, players: persons, time: time)
                         eventsList.append(event)
                         index += 1
-                        
-                        
                     } else if let iconPath = try? element.getElementsByClass("img-fluid").attr("src"), iconPath.contains("ejection"), let description = try? element.getElementsByClass("events__name").last()?.text(),
-                        let name = try? element.getElementsByClass("events__name").first()?.text(),
-                        let timeDescription = try? eventsTime.get(index),
-                        let time = try? timeDescription.getElementsByClass("events__time").text() {
+                              let name = try? element.getElementsByClass("events__name").first()?.text(),
+                              let timeDescription = try? eventsTime.get(index),
+                              let time = try? timeDescription.getElementsByClass("events__time").text() {
                         var persons = [PersonModel]()
                         persons.append(PersonModel(name: name))
                         let eventTeam = try? element.getElementsByClass("events__icon").hasClass("right")
@@ -79,12 +78,6 @@ class NetworkManager: INetworkManager {
                         index += 1
                     }
                 }
-                
-                /*
-                 po tmp[4].getElementsByClass("events__name").first()?.text()
-                 ▿ Optional<String>
-                 - some : "Колобов Олег"
-                 */
                 game.homeTeam.name = try? fullNameTeams[0].text()
                 game.visitorTeam.name = try? fullNameTeams[2].text()
                 game.cupName = try? fullNameTeams[1].text()
@@ -134,6 +127,25 @@ class NetworkManager: INetworkManager {
                 completion(matches)
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+    func loadTables(_ urlString: String, completion: @escaping( _ teamsStats: [String]) -> ()) {
+        loadInfo(url: urlString) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                print(data)
+                guard let siteString = String(data: data, encoding: .utf8) else { return }
+                let document: Document? = try? SwiftSoup.parse(siteString)
+                guard let teams = try? document?.getElementsByTag("tr") else { return }
+                for element in teams {
+                    print(try? element.text())
+                    // po teams.get(1).getElementsByTag("td").get(1).text()
+//                    "Кубометр"
+                }
+
             }
         }
     }

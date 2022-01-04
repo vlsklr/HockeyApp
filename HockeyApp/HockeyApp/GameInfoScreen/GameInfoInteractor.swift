@@ -18,6 +18,9 @@ class GameInfoInteractor: IGameInfoInteractor {
     let networkManager: INetworkManager = NetworkManager()
     
     func getGameInfo(url: String, game: GameModel) {
+        networkManager.loadTables("https://sibhl.ru/Tables") { result in
+            print(result)
+        }
         networkManager.loadGameInfo(url: url, game: game) { game in
             self.presenter?.setGameInfo(game: game)
         }
