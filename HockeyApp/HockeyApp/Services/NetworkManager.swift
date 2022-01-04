@@ -12,7 +12,7 @@ protocol INetworkManager {
     func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ())
     func loadInfo(url: String, completion: @escaping (Result<Data, Error>) -> Void)
     func loadGameInfo(url: String, game: GameModel, completion: @escaping ( _ game: GameModel) -> ())
-    func loadTables(_ urlString: String, completion: @escaping( _ teamsStats: [String]) -> ())
+    func loadTables(_ urlString: String, completion: @escaping( _ teamsStats: [TeamStatsModel]) -> ())
 }
 
 class NetworkManager: INetworkManager {
@@ -130,22 +130,25 @@ class NetworkManager: INetworkManager {
             }
         }
     }
-    func loadTables(_ urlString: String, completion: @escaping( _ teamsStats: [String]) -> ()) {
+    func loadTables(_ urlString: String, completion: @escaping( _ teamsStats: [TeamStatsModel]) -> ()) {
         loadInfo(url: urlString) { result in
             switch result {
             case .failure(let error):
                 print(error)
             case .success(let data):
-                print(data)
                 guard let siteString = String(data: data, encoding: .utf8) else { return }
                 let document: Document? = try? SwiftSoup.parse(siteString)
+                var table = [TeamStatsModel]()
                 guard let teams = try? document?.getElementsByTag("tr") else { return }
-                for element in teams {
-                    print(try? element.text())
+                for index in 1...teams.count - 1 {
+                    guard let team = try? teams.get(index),
+                          let teamStats = try? team.getElementsByTag("td"), let teamInfo = try? TeamStatsModel(name: teamStats.get(1).text(), position: teamStats.get(0).text(), games: teamStats.get(2).text(), wins: teamStats.get(3).text(), overtimeWins: teamStats.get(4).text(), shoutoutWins: teamStats.get(5).text(), overtimeLoses: teamStats.get(6).text(), shoutoutLoses: teamStats.get(7).text(), loses: teamStats.get(8).text(), goals: teamStats.get(9).text(), points: teamStats.get(10).text()) else { return }
+                    table.append(teamInfo)
+//                    table.append(team)
                     // po teams.get(1).getElementsByTag("td").get(1).text()
 //                    "Кубометр"
                 }
-
+                completion(table)
             }
         }
     }

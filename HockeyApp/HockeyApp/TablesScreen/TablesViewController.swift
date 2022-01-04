@@ -24,13 +24,6 @@ class TablesViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .green
         self.navigationController?.navigationBar.backgroundColor = .systemBlue
-//        setupSearchbar()
-//        setupSearchButton()
-//        setupSwipeDown()
-//        setupActivityIndicator()
-//        if let airportImage = UIImage(named: "airport_bgc") {
-//            self.view.backgroundColor = UIColor(patternImage: airportImage)
-//        }
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }
