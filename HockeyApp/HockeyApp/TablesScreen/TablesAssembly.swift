@@ -10,7 +10,12 @@ import Foundation
 class TablesAssembly {
     
     func build() -> TablesViewController {
-        return TablesViewController()
+        let interactor = TablesInteractor()
+        let presenter = TablesPresenter(interactor: interactor)
+        let view = TablesViewController(presenter: presenter)
+        interactor.presenter = presenter
+        presenter.view = view
+        return view
     }
     
 }
