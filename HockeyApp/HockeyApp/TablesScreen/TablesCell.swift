@@ -10,80 +10,56 @@ import UIKit
 import SnapKit
 
 protocol ITablesCell: AnyObject {
-    func setupCell(teamInfo: TeamStatsModel)
+    func setupCell(teamsInfo: [TeamStatsModel], numberOfRow: Int)
 }
 
-class TablesCell: UITableViewCell, ITablesCell {
+class TablesCell: UICollectionViewCell, ITablesCell {
     
-    let scrollView = UIScrollView()
-    let nameLabel = UILabel()
-    let positionLabel = UILabel()
-    let gamesLabel = UILabel()
-    let winsLabel = UILabel()
-    let overtimeWinsLabel = UILabel()
-    let shoutoutWinsLabel = UILabel()
-    let overtimeLosesLabel = UILabel()
-    let shoutoutLosesLabel = UILabel()
-    let losesLabel = UILabel()
-    let goalsLabel = UILabel()
-    let pointsLabel = UILabel()
-    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//    }
-    
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        print("selected")
-//    }
-    
-    func setupScrollView() {
-        contentView.backgroundColor = .red
-        scrollView.backgroundColor = .green
-        contentView.addSubview(scrollView)
-        
-        scrollView.contentSize = CGSize(width:700, height: 150)
-        scrollView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(50)
-            make.trailing.equalToSuperview()
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-    }
-    
-    func setupTeamPositionLabel() {
-        scrollView.addSubview(positionLabel)
-        positionLabel.textColor = .black
-        positionLabel.snp.makeConstraints { make in
+    func setupTextLabel(text: String, index: Int) {
+        let textLabel = UILabel()
+        contentView.addSubview(textLabel)
+        textLabel.textColor = .black
+        textLabel.textAlignment = .center
+        textLabel.text = text
+        textLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(10)
-            make.top.equalToSuperview().offset(5)
-            make.bottom.equalToSuperview().offset(-5)
-            make.width.equalTo(150)
+            make.top.equalToSuperview().offset(5 + 50 * index)
+            make.trailing.equalToSuperview().offset(-10)
+            make.height.equalTo(25)
         }
     }
+
     
-    func setupTeamNameLabel() {
-        scrollView.addSubview(nameLabel)
-        nameLabel.textColor = .black
-        nameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(positionLabel.snp_trailingMargin).offset(10)
-            make.top.equalToSuperview().offset(5)
-            make.bottom.equalToSuperview().offset(-5)
-            make.width.equalTo(550)
-        }
-    }
-    
-    func setupLabelsText(teamInfo: TeamStatsModel) {
-        positionLabel.text = teamInfo.position
-        nameLabel.text = teamInfo.name
-    }
-    
-    func setupCell(teamInfo: TeamStatsModel) {
-        setupScrollView()
-        setupTeamPositionLabel()
-        setupTeamNameLabel()
+    func setupCell(teamsInfo: [TeamStatsModel], numberOfRow: Int) {
         
-        setupLabelsText(teamInfo: teamInfo)
+        for index in 0...teamsInfo.count - 1 {
+            switch numberOfRow {
+            case 0 :
+                setupTextLabel(text: teamsInfo[index].position, index: index)
+            case 1:
+                setupTextLabel(text: teamsInfo[index].name, index: index)
+            case 2:
+                setupTextLabel(text: teamsInfo[index].games, index: index)
+            case 3:
+                setupTextLabel(text: teamsInfo[index].wins, index: index)
+            case 4:
+                setupTextLabel(text: teamsInfo[index].overtimeWins, index: index)
+            case 5:
+                setupTextLabel(text: teamsInfo[index].shoutoutWins, index: index)
+            case 6:
+                setupTextLabel(text: teamsInfo[index].overtimeLoses, index: index)
+            case 7:
+                setupTextLabel(text: teamsInfo[index].shoutoutLoses, index: index)
+            case 8:
+                setupTextLabel(text: teamsInfo[index].loses, index: index)
+            case 9:
+                setupTextLabel(text: teamsInfo[index].points, index: index)
+            default:
+                print("tmp")
+            }
+        }
     }
     
 }
+
+

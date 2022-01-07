@@ -30,9 +30,8 @@ class TablesPresenter: ITablesPresenter {
     }
     
     func setupCell(teamCell: ITablesCell, for index: Int) {
-        guard let teamInfo = tables?[index] else { return }
-        teamCell.setupCell(teamInfo: teamInfo)
-        
+        guard let teamsInfo = tables else { return }
+        teamCell.setupCell(teamsInfo: teamsInfo, numberOfRow: index)
     }
     
     func setTablesInfo(tables: [TeamStatsModel]) {
