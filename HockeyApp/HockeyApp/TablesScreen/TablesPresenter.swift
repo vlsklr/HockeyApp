@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ITablesPresenter: AnyObject {
     func setupCell(teamCell: ITablesCell, for index: Int)

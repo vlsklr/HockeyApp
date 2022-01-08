@@ -17,6 +17,7 @@ class TablesViewController: UIViewController, ITablesViewController {
     let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
     let rowsCount = 9
+    var iterator = 0
 
     
     init(presenter: ITablesPresenter) {
@@ -60,21 +61,24 @@ extension TablesViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if iterator == rowsCount {
+            iterator = 0
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath) as! TablesCell
         
-        presenter.setupCell(teamCell: cell, for: indexPath.row)
+        presenter.setupCell(teamCell: cell, for: iterator)
         cell.backgroundColor = .gray
+        iterator += 1
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = view.bounds.height - 100
+        let height = view.bounds.height - 250
         if indexPath.row == 1 {
             return CGSize(width: 300, height: height)
         }
         return CGSize(width: 50, height: height)
     }
-    
-    
 }
+
