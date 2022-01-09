@@ -8,11 +8,21 @@
 import Foundation
 import UIKit
 
-
-class TablesViewController: UIViewController {
+protocol ITablesViewController: AnyObject {
     
-    init() {
-//        self.presenter = presenter
+}
+
+class TablesViewController: UIViewController, ITablesViewController {
+    let presenter: ITablesPresenter
+    let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
+    let rowsCount = 11
+    
+    
+    
+    
+    init(presenter: ITablesPresenter) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -22,15 +32,50 @@ class TablesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .green
-        self.navigationController?.navigationBar.backgroundColor = .systemBlue
-//        setupSearchbar()
-//        setupSearchButton()
-//        setupSwipeDown()
-//        setupActivityIndicator()
-//        if let airportImage = UIImage(named: "airport_bgc") {
-//            self.view.backgroundColor = UIColor(patternImage: airportImage)
-//        }
         navigationController?.setNavigationBarHidden(true, animated: false)
+        setupCollectionView()
+    }
+    
+    func setupCollectionView() {
+        layout.scrollDirection = .horizontal
+        collectionView.setCollectionViewLayout(layout, animated: true)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(TablesCell.self, forCellWithReuseIdentifier: "teamCell")
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(25)
+            make.trailing.equalToSuperview().offset(-25)
+            make.top.equalToSuperview().offset(25)
+            make.bottom.equalToSuperview().offset(-25)
+        }
     }
 }
+
+extension TablesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return rowsCount
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath) as! TablesCell
+        presenter.setupCell(teamCell: cell, for: indexPath.row)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = view.bounds.height - 250
+        if indexPath.row == 1 {
+            return CGSize(width: 300, height: height)
+        }
+        if indexPath.row == (rowsCount - 2) {
+            return CGSize(width: 100, height: height)
+        }
+        return CGSize(width: 50, height: height)
+    }
+}
+
