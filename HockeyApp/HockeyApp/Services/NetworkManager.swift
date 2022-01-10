@@ -140,6 +140,10 @@ class NetworkManager: INetworkManager {
                 let document: Document? = try? SwiftSoup.parse(siteString)
                 var table = [TeamStatsModel]()
                 guard let teams = try? document?.getElementsByTag("tr") else { return }
+                guard let descriptions = try? teams.get(0), let tableDescriptionElements = try? descriptions.getElementsByTag("th"), let teamDescription = try? TeamStatsModel(name: tableDescriptionElements.get(1).text(), position: tableDescriptionElements.get(0).text(), games: tableDescriptionElements.get(2).text(), wins: tableDescriptionElements.get(3).text(), overtimeWins: tableDescriptionElements.get(4).text(), shoutoutWins: tableDescriptionElements.get(5).text(), overtimeLoses: tableDescriptionElements.get(6).text(), shoutoutLoses: tableDescriptionElements.get(7).text(), loses: tableDescriptionElements.get(8).text(), goals: tableDescriptionElements.get(9).text(), points: tableDescriptionElements.get(10).text())  else {
+                    return
+                }
+                table.append(teamDescription)
                 for index in 1...teams.count - 1 {
                     guard let team = try? teams.get(index),
                           let teamStats = try? team.getElementsByTag("td"), let teamInfo = try? TeamStatsModel(name: teamStats.get(1).text(), position: teamStats.get(0).text(), games: teamStats.get(2).text(), wins: teamStats.get(3).text(), overtimeWins: teamStats.get(4).text(), shoutoutWins: teamStats.get(5).text(), overtimeLoses: teamStats.get(6).text(), shoutoutLoses: teamStats.get(7).text(), loses: teamStats.get(8).text(), goals: teamStats.get(9).text(), points: teamStats.get(10).text()) else { return }

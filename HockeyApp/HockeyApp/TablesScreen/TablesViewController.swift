@@ -18,9 +18,6 @@ class TablesViewController: UIViewController, ITablesViewController {
     let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
     let rowsCount = 11
     
-    
-    
-    
     init(presenter: ITablesPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -33,7 +30,10 @@ class TablesViewController: UIViewController, ITablesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
+        tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.backgroundColor = .red
         setupCollectionView()
+       
     }
     
     func setupCollectionView() {
@@ -46,8 +46,8 @@ class TablesViewController: UIViewController, ITablesViewController {
         collectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(25)
             make.trailing.equalToSuperview().offset(-25)
-            make.top.equalToSuperview().offset(25)
-            make.bottom.equalToSuperview().offset(-25)
+            make.top.equalToSuperview().offset(125)
+            make.bottom.equalToSuperview().offset(-125)
         }
     }
 }
@@ -72,10 +72,10 @@ extension TablesViewController: UICollectionViewDataSource, UICollectionViewDele
         if indexPath.row == 1 {
             return CGSize(width: 300, height: height)
         }
-        if indexPath.row == (rowsCount - 2) {
+        if indexPath.row == (rowsCount - 2) || indexPath.row == 0 {
             return CGSize(width: 100, height: height)
         }
-        return CGSize(width: 50, height: height)
+        return CGSize(width: 75, height: height)
     }
 }
 
