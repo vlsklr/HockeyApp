@@ -90,33 +90,9 @@ class GamesViewController: UIViewController, IGamesViewController {
 }
 
 extension GamesViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let deleteAction = UIContextualAction(style: .destructive, title: RootViewController.labels?.deleteFlyghtButton) { _, _, complete in
-//            let cell = tableView.cellForRow(at: indexPath) as! FlyghtViewCell
-//            if let flyghtID = cell.entityID {
-//                self.presenter.removeFlyght(flyghtID: flyghtID)
-//                tableView.reloadData()
-//            }
-//            complete(true)
-//        }
-//
-//        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-//        configuration.performsFirstActionWithFullSwipe = true
-//        return configuration
-//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.showMatch(indexPath: indexPath)
-//        let cell = tableView.cellForRow(at: indexPath)
-        
-        //        cell?.selectedBackgroundView?.backgroundColor = .green
-        
-   
-//        let cell = tableView.cellForRow(at: indexPath) as! FlyghtViewCell
-//        if let entityID = cell.entityID {
-//            presenter.getFavorite(flyghtID: entityID)
-//
-//        }
     }
     
     

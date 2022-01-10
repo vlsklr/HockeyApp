@@ -18,11 +18,9 @@ class TablesCell: UICollectionViewCell, ITablesCell {
     var tableView = UITableView()
     var data: [TeamStatsModel]?
  
-
-
-    
     func setupTableView() {
         contentView.addSubview(tableView)
+        tableView.isScrollEnabled = false
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
@@ -34,26 +32,11 @@ class TablesCell: UICollectionViewCell, ITablesCell {
         }
     }
     
-    func setupTextLabel(text: String, index: Int) {
-        let textLabel = UILabel()
-        contentView.addSubview(textLabel)
-        textLabel.textColor = .black
-        textLabel.textAlignment = .center
-        textLabel.text = text
-        textLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(10)
-            make.top.equalToSuperview().offset(5 + 50 * index)
-            make.trailing.equalToSuperview().offset(-10)
-            make.height.equalTo(25)
-        }
-    }
-    
     func setupCell(teamsInfo: [TeamStatsModel], numberOfRow: Int) {
         data = teamsInfo
         index = numberOfRow
         setupTableView()
     }
-    
 }
 
 extension TablesCell: UITableViewDelegate, UITableViewDataSource {
@@ -63,8 +46,8 @@ extension TablesCell: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.backgroundColor = .green
         cell.selectionStyle = .none
+        cell.textLabel?.textAlignment = .center
         var text = ""
         switch self.index {
         case 0 :
@@ -95,8 +78,6 @@ extension TablesCell: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = text
         return cell
     }
-
-
 }
 
 
