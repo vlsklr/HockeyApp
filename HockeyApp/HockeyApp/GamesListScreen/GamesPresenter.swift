@@ -38,14 +38,14 @@ class GamesPresenter: IGamesPresenter {
     }
     
     func getMatchData(indexPath: IndexPath, cell: IGameCell) {
-        guard let game = matches?[indexPath.row] else {
+        guard let count = matches?.count, let game = matches?[(count - 1) - indexPath.row] else {
             return
         }
         cell.setInfo(game: game)        
     }
     
     func showMatch(indexPath: IndexPath) {
-        guard let match = matches?[indexPath.row] else { return }
+        guard let count = matches?.count, let match = matches?[(count - 1) - indexPath.row] else { return }
         router.showMatchInfo(game: match)
     }
     

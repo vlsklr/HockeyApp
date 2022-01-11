@@ -148,9 +148,6 @@ class NetworkManager: INetworkManager {
                     guard let team = try? teams.get(index),
                           let teamStats = try? team.getElementsByTag("td"), let teamInfo = try? TeamStatsModel(name: teamStats.get(1).text(), position: teamStats.get(0).text(), games: teamStats.get(2).text(), wins: teamStats.get(3).text(), overtimeWins: teamStats.get(4).text(), shoutoutWins: teamStats.get(5).text(), overtimeLoses: teamStats.get(6).text(), shoutoutLoses: teamStats.get(7).text(), loses: teamStats.get(8).text(), goals: teamStats.get(9).text(), points: teamStats.get(10).text()) else { return }
                     table.append(teamInfo)
-//                    table.append(team)
-                    // po teams.get(1).getElementsByTag("td").get(1).text()
-//                    "Кубометр"
                 }
                 completion(table)
             }
