@@ -22,8 +22,8 @@ class VisitorEventCell: EventCell {
     func setupEventPlayersConstraints() {
         players.snp.makeConstraints { make in
             make.centerY.equalTo(self.contentView)
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalTo(eventDescription.snp_leadingMargin).offset(-20)
+            make.leading.equalToSuperview().offset(15)
+            make.trailing.equalTo(eventDescription.snp_leadingMargin).offset(-15)
         }
     }
 }

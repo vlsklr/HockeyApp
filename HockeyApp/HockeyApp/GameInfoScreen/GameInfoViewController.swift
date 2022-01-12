@@ -153,7 +153,14 @@ extension GameInfoViewController: IGameInfoViewController {
     }
     
     func showGameInfo(game: GameModel) {
-        guard let homeTeamNameText = game.homeTeam.name, let visitorTeamNameText = game.visitorTeam.name, let homeScores = game.homeScores, let visitorScores = game.visitorScores, let cupName = game.cupName else { return }
+        guard let homeTeamNameText = game.homeTeam.name, let visitorTeamNameText = game.visitorTeam.name,  let cupName = game.cupName else { return }
+        var homeScores: String = "-"
+        var visitorScores: String = "-"
+        if game.homeScores != nil && game.visitorScores != nil {
+            homeScores = "\(game.homeScores!)"
+            visitorScores = "\(game.visitorScores!)"
+        }
+        
         DispatchQueue.main.async {
             self.homeTeamName.text = homeTeamNameText
             self.visitorTeamName.text = visitorTeamNameText

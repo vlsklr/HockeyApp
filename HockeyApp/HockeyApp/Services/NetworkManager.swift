@@ -45,7 +45,14 @@ class NetworkManager: INetworkManager {
                 var eventsList = [EventModel]()
                 guard let stringData = String(data: data, encoding: .utf8) else { return }
                 let gameData = try? SwiftSoup.parse(stringData)
-                guard let fullNameTeams = try? gameData?.getElementsByClass("url__r"), let events = try? gameData?.getElementsByClass("events__col-bg"), let eventsTime = try? gameData?.getElementsByClass("events__col") else { return }
+                guard let fullNameTeams = try? gameData?.getElementsByClass("url__r") else { return }
+                game.homeTeam.name = try? fullNameTeams[0].text()
+                game.visitorTeam.name = try? fullNameTeams[2].text()
+                game.cupName = try? fullNameTeams[1].text()
+                guard let events = try? gameData?.getElementsByClass("events__col-bg"), let eventsTime = try? gameData?.getElementsByClass("events__col") else {
+                    completion(game)
+                    return
+                }
                 var index = 0
                 for element in events {
                     if let iconPath = try? element.getElementsByClass("img-fluid").attr("src"),
@@ -78,9 +85,7 @@ class NetworkManager: INetworkManager {
                         index += 1
                     }
                 }
-                game.homeTeam.name = try? fullNameTeams[0].text()
-                game.visitorTeam.name = try? fullNameTeams[2].text()
-                game.cupName = try? fullNameTeams[1].text()
+               
                 game.events = eventsList
                 completion(game)
             case .failure(let error):
@@ -148,9 +153,6 @@ class NetworkManager: INetworkManager {
                     guard let team = try? teams.get(index),
                           let teamStats = try? team.getElementsByTag("td"), let teamInfo = try? TeamStatsModel(name: teamStats.get(1).text(), position: teamStats.get(0).text(), games: teamStats.get(2).text(), wins: teamStats.get(3).text(), overtimeWins: teamStats.get(4).text(), shoutoutWins: teamStats.get(5).text(), overtimeLoses: teamStats.get(6).text(), shoutoutLoses: teamStats.get(7).text(), loses: teamStats.get(8).text(), goals: teamStats.get(9).text(), points: teamStats.get(10).text()) else { return }
                     table.append(teamInfo)
-//                    table.append(team)
-                    // po teams.get(1).getElementsByTag("td").get(1).text()
-//                    "Кубометр"
                 }
                 completion(table)
             }

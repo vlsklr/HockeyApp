@@ -30,6 +30,7 @@ class EventCell: UITableViewCell {
         contentView.addSubview(players)
         backgroundColor = .white
         selectionStyle = .none
+        players.textAlignment = .center
         players.textColor = .black
         players.numberOfLines = 0
     }
