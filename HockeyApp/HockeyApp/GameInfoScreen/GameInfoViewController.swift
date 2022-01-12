@@ -28,6 +28,12 @@ class GameInfoViewController: UIViewController {
     let scores = UILabel()
     let cupName = UILabel()
     let eventsView = UITableView()
+    private let refreshControll: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refreshMatchInfo(sender:)), for: .valueChanged)
+        return refresh
+    }()
+    
     init(presenter: IGameInfoPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -50,6 +56,11 @@ class GameInfoViewController: UIViewController {
         setScoresLablel()
         setCupName()
         setEventsView()
+    }
+    
+    @objc func refreshMatchInfo(sender: UIRefreshControl) {
+        presenter.getGameInfo()
+        sender.endRefreshing()
     }
     
     func setHomeTeamLogo() {
@@ -136,6 +147,7 @@ class GameInfoViewController: UIViewController {
     
     func setEventsView() {
         view.addSubview(eventsView)
+        eventsView.refreshControl = refreshControll
         eventsView.register(HomeEventCell.self, forCellReuseIdentifier: "homeEvent")
         eventsView.register(VisitorEventCell.self, forCellReuseIdentifier: "visitorEvent")
         eventsView.snp.makeConstraints { make in

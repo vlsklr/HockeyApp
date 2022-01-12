@@ -12,7 +12,7 @@ protocol IGamesPresenter: AnyObject {
     func getMatchesCount() -> Int
     func getMatchData(indexPath: IndexPath, cell: IGameCell)
     func showMatch(indexPath: IndexPath)
-    
+    func updateGamesList()
 }
 
 class GamesPresenter: IGamesPresenter {
@@ -25,6 +25,10 @@ class GamesPresenter: IGamesPresenter {
     init(router: IGamesRouter, interactor: IGamesInteractor) {
         self.router = router
         self.interactor = interactor
+        interactor.getMatchesList()
+    }
+    
+    func updateGamesList() {
         interactor.getMatchesList()
     }
     
