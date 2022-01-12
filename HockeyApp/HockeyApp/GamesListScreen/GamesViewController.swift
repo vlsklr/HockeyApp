@@ -29,7 +29,7 @@ class GamesViewController: UIViewController, IGamesViewController {
     private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     private let refreshControll: UIRefreshControl = {
         let refresh = UIRefreshControl()
-//        refresh.addTarget(self, action: #selector(refreshFlyghts(sender:)), for: .valueChanged)
+        refresh.addTarget(self, action: #selector(refreshGamesList(sender:)), for: .valueChanged)
         return refresh
     }()
 
@@ -60,6 +60,12 @@ class GamesViewController: UIViewController, IGamesViewController {
 //        self.navigationController?.navigationBar.backgroundColor = .systemBlue
         navigationController?.setNavigationBarHidden(true, animated: false)
         tabBarController?.tabBar.isHidden = false
+    }
+    
+    @objc func refreshGamesList(sender: UIRefreshControl) {
+        presenter.updateGamesList()
+        sender.endRefreshing()
+        
     }
     
     func initTableView() {
