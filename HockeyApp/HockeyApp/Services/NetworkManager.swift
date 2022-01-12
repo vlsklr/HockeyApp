@@ -45,7 +45,14 @@ class NetworkManager: INetworkManager {
                 var eventsList = [EventModel]()
                 guard let stringData = String(data: data, encoding: .utf8) else { return }
                 let gameData = try? SwiftSoup.parse(stringData)
-                guard let fullNameTeams = try? gameData?.getElementsByClass("url__r"), let events = try? gameData?.getElementsByClass("events__col-bg"), let eventsTime = try? gameData?.getElementsByClass("events__col") else { return }
+                guard let fullNameTeams = try? gameData?.getElementsByClass("url__r") else { return }
+                game.homeTeam.name = try? fullNameTeams[0].text()
+                game.visitorTeam.name = try? fullNameTeams[2].text()
+                game.cupName = try? fullNameTeams[1].text()
+                guard let events = try? gameData?.getElementsByClass("events__col-bg"), let eventsTime = try? gameData?.getElementsByClass("events__col") else {
+                    completion(game)
+                    return
+                }
                 var index = 0
                 for element in events {
                     if let iconPath = try? element.getElementsByClass("img-fluid").attr("src"),
@@ -78,9 +85,7 @@ class NetworkManager: INetworkManager {
                         index += 1
                     }
                 }
-                game.homeTeam.name = try? fullNameTeams[0].text()
-                game.visitorTeam.name = try? fullNameTeams[2].text()
-                game.cupName = try? fullNameTeams[1].text()
+               
                 game.events = eventsList
                 completion(game)
             case .failure(let error):
