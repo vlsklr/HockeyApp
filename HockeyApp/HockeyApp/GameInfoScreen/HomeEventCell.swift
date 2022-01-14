@@ -13,7 +13,7 @@ class HomeEventCell: EventCell {
     func setupEveinIconConstraints() {
         eventIcon.snp.makeConstraints { make in
             make.centerY.equalTo(self.contentView)
-            make.leading.equalToSuperview().offset((self.contentView.bounds.width * 0.35) / 2 - 10)
+            make.leading.equalToSuperview().offset((frame.width * 0.35) / 2)
             make.width.equalTo(50)
             make.height.equalTo(50)
         }

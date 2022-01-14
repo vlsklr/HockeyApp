@@ -48,13 +48,13 @@ class GameInfoViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         eventsView.dataSource = self
         eventsView.delegate = self
+        setStadiumLabel()
+        setCupName()
         setHomeTeamLogo()
         setHomeTeamNameLabel()
         setVisitorTeamLogo()
         setVisitorNameLabel()
-        setStadiumLabel()
         setScoresLablel()
-        setCupName()
         setEventsView()
     }
     
@@ -66,7 +66,7 @@ class GameInfoViewController: UIViewController {
     func setHomeTeamLogo() {
         view.addSubview(homeTeamLogo)
         homeTeamLogo.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(100)
+            make.top.equalTo(cupName.snp.bottomMargin).offset(20)
             make.leading.equalToSuperview().offset(25)
             make.width.equalTo(85)
             make.height.equalTo(85)
@@ -92,7 +92,7 @@ class GameInfoViewController: UIViewController {
         view.addSubview(visitorTeamLogo)
         visitorTeamLogo.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-25)
-            make.top.equalToSuperview().offset(100)
+            make.top.equalTo(cupName.snp.bottomMargin).offset(20)
             make.width.equalTo(85)
             make.height.equalTo(85)
         }
@@ -117,7 +117,7 @@ class GameInfoViewController: UIViewController {
         stadiumName.textAlignment = .center
         stadiumName.textColor = .black
         stadiumName.snp.makeConstraints { make in
-            make.top.equalTo(visitorTeamLogo.snp.centerY).offset(-20)
+            make.top.equalToSuperview().offset(view.bounds.height * 0.1)
             make.centerX.equalTo(self.view)
         }
     }
@@ -125,10 +125,10 @@ class GameInfoViewController: UIViewController {
     func setScoresLablel() {
         view.addSubview(scores)
         scores.textAlignment = .center
-        scores.font = scores.font.withSize(20)
+        scores.font = scores.font.withSize(30)
         scores.textColor = .black
         scores.snp.makeConstraints { make in
-            make.top.equalTo(stadiumName.snp_bottomMargin).offset(20)
+            make.centerY.equalTo(self.homeTeamLogo)
             make.centerX.equalTo(self.view)
         }
         
@@ -140,7 +140,7 @@ class GameInfoViewController: UIViewController {
         cupName.font = cupName.font.withSize(13)
         cupName.textColor = .black
         cupName.snp.makeConstraints { make in
-            make.top.equalTo(scores.snp_bottomMargin).offset(20)
+            make.top.equalTo(stadiumName.snp_bottomMargin).offset(20)
             make.centerX.equalTo(self.view)
         }
     }

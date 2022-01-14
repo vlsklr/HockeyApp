@@ -78,10 +78,9 @@ class GameCell: UITableViewCell {
     
     func setupHomeTeamLogo() {
         contentView.addSubview(homeTeamLogo)
-        //        homeTeamLogo.backgroundColor = .green
         homeTeamLogo.image = UIImage(named: "photo_70")
         homeTeamLogo.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(contentView.bounds.width * 0.01)
             make.top.equalToSuperview().offset(25)
             make.width.equalTo(100)
             make.height.equalTo(100)
@@ -94,9 +93,9 @@ class GameCell: UITableViewCell {
         homeTeamNameLabel.textColor = .black
         homeTeamNameLabel.textAlignment = .center
         homeTeamNameLabel.font = homeTeamNameLabel.font.withSize(25)
-        homeTeamNameLabel.text = "ЛГН"
+//        homeTeamNameLabel.text = "ЛГН"
         homeTeamNameLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(contentView.bounds.width * 0.01)
             make.top.equalTo(homeTeamLogo.snp_bottomMargin).offset(15)
             make.width.equalTo(homeTeamLogo)
             make.height.equalTo(25)
@@ -105,9 +104,9 @@ class GameCell: UITableViewCell {
     
     func setupVisitorTeamLogo() {
         contentView.addSubview(visitorTeamLogo)
-        visitorTeamLogo.image = UIImage(named: "photo_70")
+        visitorTeamLogo.image = UIImage()
         visitorTeamLogo.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(contentView.bounds.width * -0.01)
             make.top.equalToSuperview().offset(25)
             make.width.equalTo(100)
             make.height.equalTo(100)
@@ -119,9 +118,9 @@ class GameCell: UITableViewCell {
         visitorTeamNameLabel.textColor = .black
         visitorTeamNameLabel.textAlignment = .center
         visitorTeamNameLabel.font = visitorTeamNameLabel.font.withSize(25)
-        visitorTeamNameLabel.text = "ЛГН"
+//        visitorTeamNameLabel.text = "ЛГН"
         visitorTeamNameLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(contentView.bounds.width * -0.01)
             make.top.equalTo(visitorTeamLogo.snp_bottomMargin).offset(15)
             make.width.equalTo(visitorTeamLogo)
             make.height.equalTo(25)
