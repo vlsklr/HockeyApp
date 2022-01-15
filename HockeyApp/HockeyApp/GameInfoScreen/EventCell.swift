@@ -17,6 +17,7 @@ class EventCell: UITableViewCell {
     let players = UILabel()
     let eventDescription = UILabel()
     let eventIcon = UIImageView()
+    var cellWidth: CGFloat?
     
     override func awakeFromNib() {
         super.awakeFromNib()

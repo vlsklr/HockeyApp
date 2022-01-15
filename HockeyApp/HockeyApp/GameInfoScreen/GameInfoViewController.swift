@@ -199,10 +199,12 @@ extension GameInfoViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if presenter.getEventSide(indexPath: indexPath) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "homeEvent") as! HomeEventCell
+            cell.cellWidth = view.bounds.width
             presenter.setEventInfoToCell(cell: cell, indexPath: indexPath)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "visitorEvent") as! VisitorEventCell
+            cell.cellWidth = view.bounds.width
             presenter.setEventInfoToCell(cell: cell, indexPath: indexPath)
             return cell
         }
