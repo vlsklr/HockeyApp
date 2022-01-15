@@ -154,7 +154,7 @@ class GameInfoViewController: UIViewController {
             make.top.equalTo(visitorTeamName).offset(75)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-50)
+            make.bottom.equalToSuperview().offset(-10)
         }
     }
 }
