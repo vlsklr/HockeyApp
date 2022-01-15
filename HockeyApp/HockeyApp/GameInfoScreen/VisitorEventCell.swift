@@ -13,7 +13,7 @@ class VisitorEventCell: EventCell {
     func setupEventIconContraints() {
         eventIcon.snp.makeConstraints { make in
             make.centerY.equalTo(self.contentView)
-            make.trailing.equalToSuperview().offset(-1 * (self.contentView.bounds.width * 0.35) / 2 + 10)
+            make.leading.equalToSuperview().offset(((cellWidth ?? 0) * 0.35) / 2 - 15)
             make.width.equalTo(50)
             make.height.equalTo(50)
         }
@@ -22,8 +22,8 @@ class VisitorEventCell: EventCell {
     func setupEventPlayersConstraints() {
         players.snp.makeConstraints { make in
             make.centerY.equalTo(self.contentView)
-            make.leading.equalToSuperview().offset(15)
-            make.trailing.equalTo(eventDescription.snp_leadingMargin).offset(-15)
+            make.trailing.equalToSuperview().offset(-15)
+            make.leading.equalTo(eventDescription.snp_trailingMargin).offset(15)
         }
     }
 }

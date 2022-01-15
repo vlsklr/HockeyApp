@@ -62,7 +62,7 @@ class NetworkManager: INetworkManager {
                        let time = try? timeDescription.getElementsByClass("events__time").text(),
                        let description = try? timeDescription.getElementsByClass("line-up").text() {
                         //если иконка имеет класс right, то событие относится к гостевой команде
-                        let eventTeam = try? element.getElementsByClass("events__icon").hasClass("right")
+                        let eventTeam = try? !element.getElementsByClass("events__icon").hasClass("right")
                         var persons = [PersonModel]()
                         for name in names {
                             if let nameText = try? name.text() {
@@ -79,7 +79,7 @@ class NetworkManager: INetworkManager {
                               let time = try? timeDescription.getElementsByClass("events__time").text() {
                         var persons = [PersonModel]()
                         persons.append(PersonModel(name: name))
-                        let eventTeam = try? element.getElementsByClass("events__icon").hasClass("right")
+                        let eventTeam = try? !element.getElementsByClass("events__icon").hasClass("right")
                         let event = EventModel(type: .ejection, description: description, isHomeTeamEvent: eventTeam ?? false, players: persons, time: time)
                         eventsList.append(event)
                         index += 1
