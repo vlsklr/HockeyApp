@@ -27,7 +27,7 @@ class GameInfoPresenter: IGameInfoPresenter {
     }
     
     func getGameInfo() {
-        interactor.getGameInfo(url: "https://sibhl.ru", game: game)
+        interactor.getGameInfo(url: Texts.siteLink.rawValue, game: game)
     }
     
     func setGameInfo(game: GameModel) {

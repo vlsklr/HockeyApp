@@ -10,6 +10,4 @@ import Foundation
 
 struct PersonModel {
     var name: String
-//    var firstName: String
-//    var secondName: String
 }

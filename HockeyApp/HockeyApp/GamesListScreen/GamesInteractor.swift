@@ -47,9 +47,8 @@ class GamesInteractor: IGamesInteractor {
     }
     
     func getMatchesList() {
-        networkManager.loadGames(url: "https://sibhl.ru") { games in
+        networkManager.loadGames(url: Texts.siteLink.rawValue) { games in
             self.loadImages(games: games)
-//            self.presenter?.setLoadedMatches(matches: games)
         }
     }
 }

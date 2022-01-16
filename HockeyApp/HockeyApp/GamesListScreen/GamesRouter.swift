@@ -12,7 +12,6 @@ protocol IGamesRouter: AnyObject {
 }
 
 class GamesRouter: IGamesRouter {
-    
     weak var view: IGamesViewController?
     
     func showMatchInfo(game: GameModel) {

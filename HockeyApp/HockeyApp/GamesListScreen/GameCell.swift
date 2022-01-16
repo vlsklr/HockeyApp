@@ -31,8 +31,6 @@ class GameCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    
-    
     func setupCell() {
         setupArena()
         setupGameDate()
@@ -49,7 +47,6 @@ class GameCell: UITableViewCell {
     func setupArena() {
         contentView.addSubview(arena)
         arena.textColor = .black
-        arena.text = "ЛДС Бердск"
         arena.font = arena.font.withSize(20)
         arena.textAlignment = .center
         arena.snp.makeConstraints { make in
@@ -66,7 +63,6 @@ class GameCell: UITableViewCell {
         gameDate.textColor = .black
         gameDate.textAlignment = .center
         gameDate.font = gameDate.font.withSize(15)
-        gameDate.text = "14 февраля 15:00"
         gameDate.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(100)
             make.trailing.equalToSuperview().offset(-100)
@@ -78,14 +74,13 @@ class GameCell: UITableViewCell {
     
     func setupHomeTeamLogo() {
         contentView.addSubview(homeTeamLogo)
-        homeTeamLogo.image = UIImage(named: "photo_70")
+        homeTeamLogo.image = UIImage()
         homeTeamLogo.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(contentView.bounds.width * 0.01)
             make.top.equalToSuperview().offset(25)
             make.width.equalTo(100)
             make.height.equalTo(100)
         }
-        
     }
     
     func setupHomeTeamName() {
@@ -93,7 +88,6 @@ class GameCell: UITableViewCell {
         homeTeamNameLabel.textColor = .black
         homeTeamNameLabel.textAlignment = .center
         homeTeamNameLabel.font = homeTeamNameLabel.font.withSize(25)
-//        homeTeamNameLabel.text = "ЛГН"
         homeTeamNameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(contentView.bounds.width * 0.01)
             make.top.equalTo(homeTeamLogo.snp_bottomMargin).offset(15)
@@ -118,7 +112,6 @@ class GameCell: UITableViewCell {
         visitorTeamNameLabel.textColor = .black
         visitorTeamNameLabel.textAlignment = .center
         visitorTeamNameLabel.font = visitorTeamNameLabel.font.withSize(25)
-//        visitorTeamNameLabel.text = "ЛГН"
         visitorTeamNameLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(contentView.bounds.width * -0.01)
             make.top.equalTo(visitorTeamLogo.snp_bottomMargin).offset(15)
@@ -144,6 +137,7 @@ class GameCell: UITableViewCell {
 }
 
 extension GameCell: IGameCell {
+    
     func setInfo(game: GameModel) {
         homeTeamNameLabel.text = game.homeTeam.shortName
         visitorTeamNameLabel.text = game.visitorTeam.shortName

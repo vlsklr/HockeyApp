@@ -42,5 +42,4 @@ extension VisitorEventCell: IEventCell {
         setupEventIcon(eventType: event.type)
         setupEventIconContraints()
     }
-    
 }

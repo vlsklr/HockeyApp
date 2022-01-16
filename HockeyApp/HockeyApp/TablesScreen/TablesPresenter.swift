@@ -42,5 +42,4 @@ class TablesPresenter: ITablesPresenter {
     func getTeamsCount() -> Int {
         return tables?.count ?? 0
     }
-
 }
