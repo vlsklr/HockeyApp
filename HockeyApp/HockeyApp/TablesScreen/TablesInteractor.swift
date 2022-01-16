@@ -17,9 +17,8 @@ class TablesInteractor: ITablesInteractor {
     let networkManager = NetworkManager()
     
     func getTeamsStanding() {
-        networkManager.loadTables("https://sibhl.ru/Tables") { teamsStats in
+        networkManager.loadTables(Texts.siteTablesLink.rawValue) { teamsStats in
             self.presenter?.setTablesInfo(tables: teamsStats)
         }
     }
-    
 }

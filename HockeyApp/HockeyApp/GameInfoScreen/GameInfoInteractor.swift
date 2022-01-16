@@ -9,7 +9,6 @@ import Foundation
 
 protocol IGameInfoInteractor {
     func getGameInfo(url: String, game: GameModel)
-    
 }
 
 class GameInfoInteractor: IGameInfoInteractor {

@@ -32,9 +32,9 @@ class GamesViewController: UIViewController, IGamesViewController {
         refresh.addTarget(self, action: #selector(refreshGamesList(sender:)), for: .valueChanged)
         return refresh
     }()
-
+    
     let presenter: IGamesPresenter
-
+    
     
     
     init(presenter: IGamesPresenter) {
@@ -48,7 +48,6 @@ class GamesViewController: UIViewController, IGamesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.backgroundColor = .white
         tableView.refreshControl = refreshControll
         initActivityIndicator()
@@ -57,7 +56,6 @@ class GamesViewController: UIViewController, IGamesViewController {
     override func viewDidAppear(_ animated: Bool) {
         initTableView()
         tableView.reloadData()
-//        self.navigationController?.navigationBar.backgroundColor = .systemBlue
         navigationController?.setNavigationBarHidden(true, animated: false)
         tabBarController?.tabBar.isHidden = false
     }
@@ -92,7 +90,7 @@ class GamesViewController: UIViewController, IGamesViewController {
             make.width.equalTo(250)
             make.height.equalTo(250)
         }
-    }    
+    }
 }
 
 extension GamesViewController: UITableViewDelegate {
@@ -104,13 +102,15 @@ extension GamesViewController: UITableViewDelegate {
     
 }
 extension GamesViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 175.00
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.getMatchesCount()
     }
-        
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GameCell
         //Конфигурируется ячейка без данных

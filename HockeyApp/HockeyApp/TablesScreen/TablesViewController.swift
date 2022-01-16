@@ -11,7 +11,6 @@ import UIKit
 protocol ITablesViewController: AnyObject {
     
 }
-
 class TablesViewController: UIViewController, ITablesViewController {
     let presenter: ITablesPresenter
     let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
@@ -33,7 +32,6 @@ class TablesViewController: UIViewController, ITablesViewController {
         tabBarController?.tabBar.isHidden = false
         tabBarController?.tabBar.backgroundColor = .red
         setupCollectionView()
-       
     }
     
     func setupCollectionView() {

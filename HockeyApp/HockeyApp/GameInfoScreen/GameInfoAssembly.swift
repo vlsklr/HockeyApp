@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class GameInfoAssembly {
     func build(game: GameModel) -> GameInfoViewController {
         let router = GameInfoRouter()

@@ -85,7 +85,6 @@ class NetworkManager: INetworkManager {
                         index += 1
                     }
                 }
-               
                 game.events = eventsList
                 completion(game)
             case .failure(let error):
@@ -107,13 +106,11 @@ class NetworkManager: INetworkManager {
                 }
                 for game: Element in gamesList.array() {
                     guard let teams = try? game.getElementsByClass("slide__command"), let team1 = try? teams.first()?.getElementsByClass("slide__command-name").text(), let team2 = try? teams.last()?.getElementsByClass("slide__command-name").text(), let dateBlock = try? game.getElementsByClass("slide__date-block"), let date = try? game.getElementsByClass("slide__date").text(), let scoresRawValue = try? dateBlock.first()?.getElementsByTag("H4").text(), let arena = try? game.getElementsByClass("slide__match-link").first()?.text(), let homeTeamLogo = try? teams.first()?.getElementsByClass("img-fluid").attr("src"), let visitorTeamLogo = try? teams.last()?.getElementsByClass("img-fluid").attr("src"), let gameNumberLinkElement = try? game.getElementsByClass("slide__match-info").attr("onclick") else {return}
-                    
                     var gameNumberString: String? = nil
                     var visitorScores: Int?
                     var homeScores: Int?
                     if let index = gameNumberLinkElement.firstIndex(of: "/") {
                         gameNumberString = String(gameNumberLinkElement[index...]).trimmingCharacters(in: .init(charactersIn: "'\\"))
-                        
                     }
                     let homeTeamLogoAddress = url + homeTeamLogo.replacingOccurrences(of: "\\", with: "/")
                     let visitorTeamAddres = url + visitorTeamLogo.replacingOccurrences(of: "\\", with: "/")

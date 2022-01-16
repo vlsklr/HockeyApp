@@ -12,9 +12,8 @@ import SnapKit
 protocol IGameInfoViewController: AnyObject {
     func showGameInfo(game: GameModel)
     func refreshTable()
-
+    
 }
-
 
 class GameInfoViewController: UIViewController {
     let presenter: IGameInfoPresenter
@@ -71,7 +70,6 @@ class GameInfoViewController: UIViewController {
             make.width.equalTo(85)
             make.height.equalTo(85)
         }
-        
     }
     
     func setHomeTeamNameLabel() {
@@ -131,7 +129,6 @@ class GameInfoViewController: UIViewController {
             make.centerY.equalTo(self.homeTeamLogo)
             make.centerX.equalTo(self.view)
         }
-        
     }
     
     func setCupName() {

@@ -24,12 +24,11 @@ class TabBarController {
         
         gamesListScreenViewController = GamesAssembly().build()
         gamesListNavigationController = UINavigationController(rootViewController: self.gamesListScreenViewController)
-        gamesListNavigationController.tabBarItem.title = "Матчи"
+        gamesListNavigationController.tabBarItem.title = Texts.games.rawValue
         gamesListNavigationController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
         tablesScreenViewController = TablesAssembly().build()
         tablesNavigationController = UINavigationController(rootViewController: tablesScreenViewController)
-        tablesNavigationController.tabBarItem.title = "Таблицы"
-//        tablesNavigationController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "American Typewriter", size: 25)], for: .normal)
+        tablesNavigationController.tabBarItem.title = Texts.tables.rawValue
         tablesNavigationController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
         tabBar.setViewControllers([gamesListNavigationController, tablesNavigationController], animated: true)
     }
