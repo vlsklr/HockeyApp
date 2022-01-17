@@ -13,6 +13,7 @@ protocol ITablesPresenter: AnyObject {
     func getInfo()
     func setTablesInfo(tables: [TeamStatsModel])
     func getTeamsCount() -> Int
+    func notifyError(text: String)
 }
 
 class TablesPresenter: ITablesPresenter {
@@ -41,5 +42,9 @@ class TablesPresenter: ITablesPresenter {
     
     func getTeamsCount() -> Int {
         return tables?.count ?? 0
+    }
+    
+    func notifyError(text: String) {
+        AlertController.showAlert(text: Texts.errorMessage.rawValue, view: view as! UIViewController)
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IGameInfoPresenter: AnyObject {
     func getGameInfo()
@@ -41,7 +42,7 @@ class GameInfoPresenter: IGameInfoPresenter {
     }
     
     func notifyError(errorMessage: String) {
-        self.view?.showAlert(text: Texts.errorMessage.rawValue)
+        AlertController.showAlert(text: Texts.errorMessage.rawValue, view: view as! UIViewController)
     }
     
     func setEventInfoToCell(cell: IEventCell, indexPath: IndexPath) {
