@@ -12,6 +12,7 @@ import SnapKit
 protocol IGameInfoViewController: AnyObject {
     func showGameInfo(game: GameModel)
     func refreshTable()
+    func showAlert(text: String)
     
 }
 
@@ -181,6 +182,13 @@ extension GameInfoViewController: IGameInfoViewController {
             self.refreshTable()
         }
     }
+    
+    func showAlert(text: String) {
+        let alert = UIAlertController(title: Texts.error.rawValue, message: text, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ОК", style: .default))
+                self.present(alert, animated: true)
+    }
+
 }
 
 extension GameInfoViewController: UITableViewDataSource, UITableViewDelegate {

@@ -12,4 +12,6 @@ enum Texts: String {
     case tables = "Таблицы"
     case siteLink = "https://sibhl.ru"
     case siteTablesLink = "https://sibhl.ru/Tables"
+    case error = "Ошибка"
+    case errorMessage = "При загрузке данных возникла ошибка"
 }

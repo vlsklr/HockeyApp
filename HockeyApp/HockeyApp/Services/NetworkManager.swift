@@ -11,7 +11,7 @@ import SwiftSoup
 protocol INetworkManager {
     func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ())
     func loadInfo(url: String, completion: @escaping (Result<Data, Error>) -> Void)
-    func loadGameInfo(url: String, game: GameModel, completion: @escaping ( _ game: GameModel) -> ())
+    func loadGameInfo(url: String, game: GameModel, completion: @escaping (Result<GameModel, Error>) -> ())
     func loadTables(_ urlString: String, completion: @escaping( _ teamsStats: [TeamStatsModel]) -> ())
 }
 
@@ -35,7 +35,7 @@ class NetworkManager: INetworkManager {
         }).resume()
     }
     
-    func loadGameInfo(url: String,  game: GameModel, completion: @escaping ( _ game: GameModel) -> ()) {
+    func loadGameInfo(url: String,  game: GameModel, completion: @escaping (Result<GameModel, Error>) -> ()) {
         guard let matchLink = game.matchLink else {return}
         var game = game
         let urlString = url + matchLink
@@ -50,7 +50,7 @@ class NetworkManager: INetworkManager {
                 game.visitorTeam.name = try? fullNameTeams[2].text()
                 game.cupName = try? fullNameTeams[1].text()
                 guard let events = try? gameData?.getElementsByClass("events__col-bg"), let eventsTime = try? gameData?.getElementsByClass("events__col") else {
-                    completion(game)
+                    completion(.success(game))
                     return
                 }
                 var index = 0
@@ -86,9 +86,9 @@ class NetworkManager: INetworkManager {
                     }
                 }
                 game.events = eventsList
-                completion(game)
+                completion(.success(game))
             case .failure(let error):
-                print (error)
+                completion(.failure(error))
             }
         }
     }
