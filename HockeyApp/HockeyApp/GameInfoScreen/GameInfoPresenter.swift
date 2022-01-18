@@ -42,7 +42,8 @@ class GameInfoPresenter: IGameInfoPresenter {
     }
     
     func notifyError(errorMessage: String) {
-        AlertController.showAlert(text: Texts.errorMessage.rawValue, view: view as! UIViewController)
+        view?.alertController.showAlert(text: Texts.errorMessage.rawValue)
+//        AlertController.showAlert(text: Texts.errorMessage.rawValue, view: view as! UIViewController)
     }
     
     func setEventInfoToCell(cell: IEventCell, indexPath: IndexPath) {

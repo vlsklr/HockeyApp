@@ -11,9 +11,12 @@ import SnapKit
 protocol IGamesViewController: AnyObject {
     func refreshView()
     func showGame(viewController: GameInfoViewController)
+    var alertController: IAlertController { get }
 }
 
 class GamesViewController: UIViewController, IGamesViewController {
+    var alertController: IAlertController
+    
     func showGame(viewController: GameInfoViewController) {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -39,6 +42,7 @@ class GamesViewController: UIViewController, IGamesViewController {
     
     init(presenter: IGamesPresenter) {
         self.presenter = presenter
+        alertController = AlertController()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -50,6 +54,7 @@ class GamesViewController: UIViewController, IGamesViewController {
         super.viewDidLoad()
         tableView.backgroundColor = .white
         tableView.refreshControl = refreshControll
+        alertController.view = self
         initActivityIndicator()
     }
     

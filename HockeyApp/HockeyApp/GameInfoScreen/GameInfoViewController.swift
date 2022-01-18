@@ -158,7 +158,9 @@ class GameInfoViewController: UIViewController {
 
 extension GameInfoViewController: IGameInfoViewController {
     var alertController: IAlertController {
-        return AlertController()
+        let controller = AlertController()
+        controller.view = self
+        return controller
     }
     
     func refreshTable() {

@@ -56,7 +56,8 @@ class GamesPresenter: IGamesPresenter {
     }
     
     func notifyError(text: String) {
-        AlertController.showAlert(text: Texts.errorMessage.rawValue, view: view as! UIViewController)
+        view?.alertController.showAlert(text: Texts.errorMessage.rawValue)
+//        AlertController.showAlert(text: Texts.errorMessage.rawValue)
     }
     
 }

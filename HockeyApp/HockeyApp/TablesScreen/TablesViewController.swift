@@ -9,17 +9,20 @@ import Foundation
 import UIKit
 
 protocol ITablesViewController: AnyObject {
-    
+    var alertController: IAlertController { get }
 }
 class TablesViewController: UIViewController, ITablesViewController {
+    var alertController: IAlertController
     let presenter: ITablesPresenter
     let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
     let rowsCount = 11
     
     init(presenter: ITablesPresenter) {
+        alertController = AlertController()
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+
     }
     
     required init?(coder: NSCoder) {
@@ -28,6 +31,7 @@ class TablesViewController: UIViewController, ITablesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        alertController.view = self
         navigationController?.setNavigationBarHidden(true, animated: false)
         tabBarController?.tabBar.isHidden = false
         tabBarController?.tabBar.backgroundColor = .red
