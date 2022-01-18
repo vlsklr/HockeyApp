@@ -17,8 +17,13 @@ class TablesInteractor: ITablesInteractor {
     let networkManager = NetworkManager()
     
     func getTeamsStanding() {
-        networkManager.loadTables(Texts.siteTablesLink.rawValue) { teamsStats in
-            self.presenter?.setTablesInfo(tables: teamsStats)
+        networkManager.loadTables(Texts.siteTablesLink.rawValue) { result in
+            switch result {
+            case .success(let teamStats):
+                self.presenter?.setTablesInfo(tables: teamStats)
+            case .failure(let error):
+                self.presenter?.notifyError(text: error.localizedDescription)
+            }
         }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IGamesPresenter: AnyObject {
     func setLoadedMatches(matches: [GameModel])
@@ -13,6 +14,7 @@ protocol IGamesPresenter: AnyObject {
     func getMatchData(indexPath: IndexPath, cell: IGameCell)
     func showMatch(indexPath: IndexPath)
     func updateGamesList()
+    func notifyError(text: String)
 }
 
 class GamesPresenter: IGamesPresenter {
@@ -51,6 +53,11 @@ class GamesPresenter: IGamesPresenter {
     func showMatch(indexPath: IndexPath) {
         guard let count = matches?.count, let match = matches?[(count - 1) - indexPath.row] else { return }
         router.showMatchInfo(game: match)
+    }
+    
+    func notifyError(text: String) {
+        view?.alertController.showAlert(text: Texts.errorMessage.rawValue)
+//        AlertController.showAlert(text: Texts.errorMessage.rawValue)
     }
     
 }

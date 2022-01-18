@@ -17,8 +17,14 @@ class GameInfoInteractor: IGameInfoInteractor {
     let networkManager: INetworkManager = NetworkManager()
     
     func getGameInfo(url: String, game: GameModel) {
-        networkManager.loadGameInfo(url: url, game: game) { game in
-            self.presenter?.setGameInfo(game: game)
+        networkManager.loadGameInfo(url: url, game: game) { result in
+            switch result {
+            case .success(let gameInfo):
+                self.presenter?.setGameInfo(game: gameInfo)
+            case .failure(let error):
+                print(error)
+                self.presenter?.notifyError(errorMessage: error.localizedDescription)
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ import SnapKit
 protocol IGameInfoViewController: AnyObject {
     func showGameInfo(game: GameModel)
     func refreshTable()
-    
+    var alertController: IAlertController { get }
 }
 
 class GameInfoViewController: UIViewController {
@@ -157,6 +157,12 @@ class GameInfoViewController: UIViewController {
 }
 
 extension GameInfoViewController: IGameInfoViewController {
+    var alertController: IAlertController {
+        let controller = AlertController()
+        controller.view = self
+        return controller
+    }
+    
     func refreshTable() {
         eventsView.reloadData()
     }

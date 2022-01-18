@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IGameInfoPresenter: AnyObject {
     func getGameInfo()
@@ -13,10 +14,11 @@ protocol IGameInfoPresenter: AnyObject {
     func getEventsCount() -> Int
     func setEventInfoToCell(cell: IEventCell, indexPath: IndexPath)
     func getEventSide(indexPath: IndexPath) -> Bool
+    func notifyError(errorMessage: String)
 }
 
 class GameInfoPresenter: IGameInfoPresenter {
-    
+      
     weak var view: IGameInfoViewController?
     let interactor: IGameInfoInteractor
     var game: GameModel
@@ -34,9 +36,14 @@ class GameInfoPresenter: IGameInfoPresenter {
         self.game = game
         view?.showGameInfo(game: game)
     }
-    
+        
     func getEventsCount() -> Int {
         return game.events?.count ?? 0
+    }
+    
+    func notifyError(errorMessage: String) {
+        view?.alertController.showAlert(text: Texts.errorMessage.rawValue)
+//        AlertController.showAlert(text: Texts.errorMessage.rawValue, view: view as! UIViewController)
     }
     
     func setEventInfoToCell(cell: IEventCell, indexPath: IndexPath) {

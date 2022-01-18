@@ -9,10 +9,10 @@ import Foundation
 import SwiftSoup
 
 protocol INetworkManager {
-    func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ())
+    func loadGames(url: String, completion: @escaping ( Result<[GameModel],Error>) -> ())
     func loadInfo(url: String, completion: @escaping (Result<Data, Error>) -> Void)
-    func loadGameInfo(url: String, game: GameModel, completion: @escaping ( _ game: GameModel) -> ())
-    func loadTables(_ urlString: String, completion: @escaping( _ teamsStats: [TeamStatsModel]) -> ())
+    func loadGameInfo(url: String, game: GameModel, completion: @escaping (Result<GameModel, Error>) -> ())
+    func loadTables(_ urlString: String, completion: @escaping(Result<[TeamStatsModel], Error>) -> ())
 }
 
 class NetworkManager: INetworkManager {
@@ -35,7 +35,7 @@ class NetworkManager: INetworkManager {
         }).resume()
     }
     
-    func loadGameInfo(url: String,  game: GameModel, completion: @escaping ( _ game: GameModel) -> ()) {
+    func loadGameInfo(url: String,  game: GameModel, completion: @escaping (Result<GameModel, Error>) -> ()) {
         guard let matchLink = game.matchLink else {return}
         var game = game
         let urlString = url + matchLink
@@ -50,7 +50,7 @@ class NetworkManager: INetworkManager {
                 game.visitorTeam.name = try? fullNameTeams[2].text()
                 game.cupName = try? fullNameTeams[1].text()
                 guard let events = try? gameData?.getElementsByClass("events__col-bg"), let eventsTime = try? gameData?.getElementsByClass("events__col") else {
-                    completion(game)
+                    completion(.success(game))
                     return
                 }
                 var index = 0
@@ -86,14 +86,14 @@ class NetworkManager: INetworkManager {
                     }
                 }
                 game.events = eventsList
-                completion(game)
+                completion(.success(game))
             case .failure(let error):
-                print (error)
+                completion(.failure(error))
             }
         }
     }
     
-    func loadGames(url: String, completion: @escaping ( _ games: [GameModel]) -> ()) {
+    func loadGames(url: String, completion: @escaping ( Result<[GameModel],Error>) -> ()) {
         var matches: [GameModel] = [GameModel]()
         loadInfo(url: url) { result in
             switch result {
@@ -126,17 +126,17 @@ class NetworkManager: INetworkManager {
                     let game = GameModel(visitorTeam: visitorTeam, homeTeam: homeTeam, visitorScores: visitorScores, homeScores: homeScores, gamedate: date, arena: arena, matchLink: gameNumberString, cupName: nil)
                     matches.append(game)
                 }
-                completion(matches)
+                completion(.success(matches))
             case .failure(let error):
-                print(error)
+                completion(.failure(error))
             }
         }
     }
-    func loadTables(_ urlString: String, completion: @escaping( _ teamsStats: [TeamStatsModel]) -> ()) {
+    func loadTables(_ urlString: String, completion: @escaping(Result<[TeamStatsModel], Error>) -> ()) {
         loadInfo(url: urlString) { result in
             switch result {
             case .failure(let error):
-                print(error)
+                completion(.failure(error))
             case .success(let data):
                 guard let siteString = String(data: data, encoding: .utf8) else { return }
                 let document: Document? = try? SwiftSoup.parse(siteString)
@@ -151,7 +151,7 @@ class NetworkManager: INetworkManager {
                           let teamStats = try? team.getElementsByTag("td"), let teamInfo = try? TeamStatsModel(name: teamStats.get(1).text(), position: teamStats.get(0).text(), games: teamStats.get(2).text(), wins: teamStats.get(3).text(), overtimeWins: teamStats.get(4).text(), shoutoutWins: teamStats.get(5).text(), overtimeLoses: teamStats.get(6).text(), shoutoutLoses: teamStats.get(7).text(), loses: teamStats.get(8).text(), goals: teamStats.get(9).text(), points: teamStats.get(10).text()) else { return }
                     table.append(teamInfo)
                 }
-                completion(table)
+                completion(.success(table))
             }
         }
     }

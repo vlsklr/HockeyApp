@@ -27,6 +27,7 @@ class GamesInteractor: IGamesInteractor {
                 switch result {
                 case .failure(let error):
                     print(error)
+                    self.presenter?.notifyError(text: error.localizedDescription)
                 case .success(let data):
                     let img = UIImage(data: data)
                     gamesList[index].homeTeam.logoImage = img
@@ -37,6 +38,7 @@ class GamesInteractor: IGamesInteractor {
                 switch result {
                 case .failure(let error):
                     print(error)
+                    self.presenter?.notifyError(text: error.localizedDescription)
                 case .success(let data):
                     let img = UIImage(data: data)
                     gamesList[index].visitorTeam.logoImage = img
@@ -47,8 +49,14 @@ class GamesInteractor: IGamesInteractor {
     }
     
     func getMatchesList() {
-        networkManager.loadGames(url: Texts.siteLink.rawValue) { games in
-            self.loadImages(games: games)
+        networkManager.loadGames(url: Texts.siteLink.rawValue) { result in
+            switch result {
+            case .success(let games):
+                self.loadImages(games: games)
+            case .failure(let error):
+                print(error)
+                self.presenter?.notifyError(text: error.localizedDescription)
+            }
         }
     }
 }
