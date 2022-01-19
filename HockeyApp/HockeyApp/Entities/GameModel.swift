@@ -12,6 +12,7 @@ struct GameModel {
     var homeTeam: TeamModel
     var visitorScores: Int?
     var homeScores: Int?
+    var scoresDescription: String?
     var gamedate: String
     var arena: String
     let matchLink: String?

@@ -171,6 +171,7 @@ extension GameInfoViewController: IGameInfoViewController {
         guard let homeTeamNameText = game.homeTeam.name, let visitorTeamNameText = game.visitorTeam.name,  let cupName = game.cupName else { return }
         var homeScores: String = "-"
         var visitorScores: String = "-"
+        let description = game.scoresDescription ?? ""
         if game.homeScores != nil && game.visitorScores != nil {
             homeScores = "\(game.homeScores!)"
             visitorScores = "\(game.visitorScores!)"
@@ -182,7 +183,7 @@ extension GameInfoViewController: IGameInfoViewController {
             self.visitorTeamLogo.image = game.visitorTeam.logoImage
             self.homeTeamLogo.image = game.homeTeam.logoImage
             self.stadiumName.text = game.arena
-            self.scores.text = "\(homeScores) : \(visitorScores)"
+            self.scores.text = "\(homeScores) : \(visitorScores) \(description)"
             self.cupName.text = cupName
             self.refreshTable()
         }

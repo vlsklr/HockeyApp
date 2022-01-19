@@ -105,7 +105,9 @@ class NetworkManager: INetworkManager {
                     return
                 }
                 for game: Element in gamesList.array() {
-                    guard let teams = try? game.getElementsByClass("slide__command"), let team1 = try? teams.first()?.getElementsByClass("slide__command-name").text(), let team2 = try? teams.last()?.getElementsByClass("slide__command-name").text(), let dateBlock = try? game.getElementsByClass("slide__date-block"), let date = try? game.getElementsByClass("slide__date").text(), let scoresRawValue = try? dateBlock.first()?.getElementsByTag("H4").text(), let arena = try? game.getElementsByClass("slide__match-link").first()?.text(), let homeTeamLogo = try? teams.first()?.getElementsByClass("img-fluid").attr("src"), let visitorTeamLogo = try? teams.last()?.getElementsByClass("img-fluid").attr("src"), let gameNumberLinkElement = try? game.getElementsByClass("slide__match-info").attr("onclick") else {return}
+                    guard let teams = try? game.getElementsByClass("slide__command"), let team1 = try? teams.first()?.getElementsByClass("slide__command-name").text(), let team2 = try? teams.last()?.getElementsByClass("slide__command-name").text(), let dateBlock = try? game.getElementsByClass("slide__date-block"), let date = try? game.getElementsByClass("slide__date").text(), let scoresRawValue = try? dateBlock.first()?.getElementsByTag("H4").text(), let arena = try? game.getElementsByClass("slide__match-link").first()?.text(), let homeTeamLogo = try? teams.first()?.getElementsByClass("img-fluid").attr("src"), let visitorTeamLogo = try? teams.last()?.getElementsByClass("img-fluid").attr("src"), let gameNumberLinkElement = try? game.getElementsByClass("slide__match-info").attr("onclick"), let scoresDescription = try? dateBlock.first()?.getElementsByTag("span").last()?.text() else {return}
+                    //dateBlock.last()?.getElementsByTag("span").last()
+                    
                     var gameNumberString: String? = nil
                     var visitorScores: Int?
                     var homeScores: Int?
@@ -123,7 +125,7 @@ class NetworkManager: INetworkManager {
                     var visitorTeam = TeamModel(name: nil, shortName: team2)
                     homeTeam.logoLink = homeTeamLogoAddress
                     visitorTeam.logoLink = visitorTeamAddres
-                    let game = GameModel(visitorTeam: visitorTeam, homeTeam: homeTeam, visitorScores: visitorScores, homeScores: homeScores, gamedate: date, arena: arena, matchLink: gameNumberString, cupName: nil)
+                    let game = GameModel(visitorTeam: visitorTeam, homeTeam: homeTeam, visitorScores: visitorScores, homeScores: homeScores, scoresDescription: scoresDescription, gamedate: date, arena: arena, matchLink: gameNumberString, cupName: nil)
                     matches.append(game)
                 }
                 completion(.success(matches))

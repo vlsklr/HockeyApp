@@ -142,8 +142,8 @@ extension GameCell: IGameCell {
         homeTeamNameLabel.text = game.homeTeam.shortName
         visitorTeamNameLabel.text = game.visitorTeam.shortName
         gameDate.text = game.gamedate
-        if let homeScores = game.homeScores, let visitorScores = game.visitorScores {
-            scores.text = "\(homeScores) : \(visitorScores)"
+        if let homeScores = game.homeScores, let visitorScores = game.visitorScores, let description = game.scoresDescription {
+            scores.text = "\(homeScores) : \(visitorScores) \(description)"
         }
         arena.text = game.arena
         if let homeTeamImage = game.homeTeam.logoImage {
